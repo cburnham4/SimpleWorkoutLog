@@ -7,7 +7,9 @@ git pull origin master
 
 ### After changing code
 git add .
+
 git commit -m [MESSAGE]
-  Ex. git commit -m "Added photos"
+
+Ex. git commit -m "Added photos"
   
 git push origin master

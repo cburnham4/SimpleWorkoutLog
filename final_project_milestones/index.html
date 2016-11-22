@@ -11,11 +11,16 @@
 
     <title>Workout Log</title>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
 
 
   </head>
 
   <body>
+
+  <div class="container-fluid" style="margin-left:20px">
+    <div class="row">
     <h1> Online Workout Log</h1>
 
     <h3> Team Members </h3>
@@ -38,9 +43,12 @@
     <h3> Mockups </h3>
 
     <p> The initial home page is currently stored at <a href='./html/index.html'>Here</a> . The user will first see this page and be able to login or register for out site. Upon logging in, the user will be directed to our next page which is currently stored at 'html/exercise_page.html'  </p>
+  </div>
 
-
+  <div class="row">
     <!-- Document the database schema -->
+
+    <div class="col-md-4">
     <h2> Database Schema </h2>
 
     <h3> Tables </h3>
@@ -102,7 +110,19 @@
       </li>
 
     </ul>
+    </div> <!-- End col-md-4-->
+    <div class="col-md-8">
 
+      <div class="dbimg" style="margin: 50px">
+        <h3>DB Schema Design</h3>
+        <img src="./DatabaseSchemaDesign.PNG" alt="DB Schema" class="img-rounded" width="750px" height="500px">
+      </div>
+      
+    </div>
+  </div> <!-- End DB Schema Row-->
+  
+
+  <div class="row">
     <h2>Server Side API</h2>
     <h3>ORM</h3>
 
@@ -154,6 +174,9 @@
         </ul>
       </li>
     </ul>
+  </div> <!-- End Server Side API Row-->
+
+ </div>
 
     <h3>Web facing URLS</h3>
     <ul>
@@ -164,4 +187,8 @@
       <li>sets-api.php</li>
 
   </body>
+ 
+
+    <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </html>

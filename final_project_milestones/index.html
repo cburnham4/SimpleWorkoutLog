@@ -107,12 +107,50 @@
     <h3>ORM</h3>
 
     <ul>
-      <li>Exercises Object
+      <li>Exercise Object
         <ul>
           <li>create(name, muscleID)</li>
           <li>getAllExercises()</li>
           <li>getExerciseById(id)</li>
           <li>updateExercise(id, newName, muscleId)</li>
+          <li>deleteExercise(id)</li>
+        </ul>
+      </li>
+
+      <li>Muscle Object
+        <ul>
+          <li>create(name)</li>
+          <li>getAllMuscles()</li>
+          <li>getMuscleById(id)</li>
+          <li>updateMuscle(id, newName)</li>
+          <li>deleteMuscle(id)</li>
+        </ul>
+      </li>
+
+      <li>Muscle Object
+        <ul>
+          <li>create(name)</li>
+          <li>getAllMuscles()</li>
+          <li>getMuscleById(id)</li>
+          <li>updateMuscle(id, newName)</li>
+          <li>deleteMuscle(id)</li>
+        </ul>
+      </li>
+
+      <li>Day Object
+        <ul>
+          <li>create(date)</li>
+          <li>getDatesAndSets(exerciseID) // Use SQL join to get all sets for every date for selected exercise</li>
+          <li>getDate(id)</li>
+        </ul>
+      </li>
+
+      <li>Set Object
+        <ul>
+          <li>create(dayid, reps, weight)</li>
+          <li>getSetsByDay(dayId)</li>
+          <li>updateSet(id, reps, weight)</li>
+          <li>deleteSet(id)</li>
         </ul>
       </li>
     </ul>

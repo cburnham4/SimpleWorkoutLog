@@ -120,6 +120,163 @@
       
     </div>
   </div> <!-- End DB Schema Row-->
+
+    <div class="row">
+      <h2>Server Side API</h2>
+        <div class="col-md-6">
+        
+        <h3>ORM</h3>
+
+        <ul>
+          <li>Exercise Object
+            <ul>
+              <li>create(name, muscleID)</li>
+              <li>getAllExercises()</li>
+              <li>getExerciseById(id)</li>
+              <li>updateExercise(id, newName, muscleId)</li>
+              <li>deleteExercise(id)</li>
+            </ul>
+          </li>
+
+          <li>Muscle Object
+            <ul>
+              <li>create(name)</li>
+              <li>getAllMuscles()</li>
+              <li>getMuscleById(id)</li>
+              <li>updateMuscle(id, newName)</li>
+              <li>deleteMuscle(id)</li>
+            </ul>
+          </li>
+
+          <li>Routine Object
+            <ul>
+              <li>create(name)</li>
+              <li>getAllRoutines()</li>
+              <li>getRoutineById(id)</li>
+              <li>getExercisedInRoutine(id)</li>
+              <li>deleteRoutine(id)</li>
+            </ul>
+          </li>
+
+          <li>Day Object
+            <ul>
+              <li>create(date)</li>
+              <li>getDatesAndSets(exerciseID) // Use SQL join to get all sets for every date for selected exercise</li>
+              <li>getDate(id)</li>
+            </ul>
+          </li>
+
+          <li>Set Object
+            <ul>
+              <li>create(dayid, reps, weight)</li>
+              <li>getSetsByDay(dayId)</li>
+              <li>updateSet(id, reps, weight)</li>
+              <li>deleteSet(id)</li>
+            </ul>
+          </li>
+        </ul>
+      </div> 
+
+        <div class="col-md-6">
+              <h3>Web facing URLS</h3>
+                <ul>
+                  <li>exercise-api.php</li>
+                  <li>muscle-api.php</li>
+                  <li>routine-api.php</li>
+                  <li>day-api.php</li>
+                  <li>sets-api.php</li>
+                </ul>
+        </div>
+
+  </div><!-- End Server Side API Row-->
+
+  <div class="row">
+  <h1>JSON Object Examples</h1>
+    <div class="col-md-6 ">
+      
+        <pre>
+          <code>
+            /* Exercise Object */
+            {"Exercise":[
+                {"ID":1, "EXERCISE_NAME":"Bench Press"},
+                {"ID":2, "EXERCISE_NAME":"Leg Press"},
+                {"ID":3, "EXERCISE_NAME":"Squats"},
+            ]}
+
+
+            /* Muscle Object */
+            {"Muscle":[
+                {"ID":1, "MUSCLE_NAME":"Biceps"},
+                {"ID":2, "MUSCLE_NAME":"Triceps},
+                {"ID":3, "MUSCLE_NAME":"Traps"},
+            ]}
+
+
+            /* Routine Object */
+            {"Routine":[
+                {"ID":1, "ROUTINE_NAME":"Barbell"},
+                {"ID":2, "ROUTINE_NAME":"Leg Press},
+                {"ID":3, "ROUTINE_NAME":"Dumbell Lunge"},
+            ]}
+
+          </code>
+        </pre>
+
+    </div>
+    <div class="col-md-6">
+      <pre>
+        <code>
+            /* Date + Sets Object*/
+            {
+            "EXERCISE_ID": 1,
+            "EXERCISE_NAME": "Bench",
+            "Dates": [{
+              "ID": 1,
+              "DATE": "10-30-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 8,
+                "WEIGHT": 285
+              }, {
+                "REPS": 6,
+                "WEIGHT": 325
+              }]
+            }, {
+              "ID": 2,
+              "DATE": "11-35-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 10,
+                "WEIGHT": 285
+              }, {
+                "REPS": 8,
+                "WEIGHT": 325
+              }]
+            }, {
+              "ID": 3,
+              "DATE": "11-30-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 8,
+                "WEIGHT": 295
+              }, {
+                "REPS": 6,
+                "WEIGHT": 345
+              }]
+            }]
+          }
+        </code>
+      </pre>
+    </div>
+
+  </div>
+
   
  </div>
 

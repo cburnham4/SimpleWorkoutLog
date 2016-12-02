@@ -1,0 +1,50 @@
+{"Exercise":[
+    {"ID":1, "EXERCISE_NAME":"Bench Press"},
+    {"ID":2, "EXERCISE_NAME":"Leg Press"},
+    {"ID":3, "EXERCISE_NAME":"Squats"},
+]}
+
+{"Muscle":[
+    {"ID":1, "MUSCLE_NAME":"Biceps"},
+    {"ID":2, "MUSCLE_NAME":"Triceps},
+    {"ID":3, "MUSCLE_NAME":"Traps"},
+]}
+
+{"Routine":[
+    {"ID":1, "ROUTINE_NAME":"Barbell"},
+    {"ID":2, "ROUTINE_NAME":"Leg Press},
+    {"ID":3, "ROUTINE_NAME":"Dumbell Lunge"},
+]}
+
+/* Get sets by Day */
+{
+  "EXERCISE_ID": 1,
+  "EXERCISE_NAME": "Bench"
+  "DATE" : "10-30-2016"
+  "PAST_SETS" : [
+	{
+	  "REPS": 10,
+	  "WEIGHT": 225
+	},
+		{
+	  "REPS": 8,
+	  "WEIGHT": 285
+	},
+		{
+	  "REPS": 6,
+	  "WEIGHT": 325
+	}
+  ]
+}
+
+{"Day":[
+    {"ID":1, "DATE":"10-30-2016"},
+    {"ID":2, "DATE":"08-15-2008"},
+    {"ID":3, "DATE":"3-07-2011"},
+]}
+
+{"Set":[
+    {"ID":1, "DATE":"10-30-2016"},
+    {"ID":2, "DATE":"08-15-2008"},
+    {"ID":3, "DATE":"3-07-2011"},
+]}

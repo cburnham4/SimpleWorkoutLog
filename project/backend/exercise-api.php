@@ -42,37 +42,35 @@
     exit();
 
   } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_REQUEST['username'])) {
-      $username = trim($_REQUEST['username']);
+
+    /* Create the new exercise */
+    if (isset($_REQUEST['name'])) {
+      $username = trim($_REQUEST['name']);
     } else {
-      header("HTTP/1.0 400 Bad Requests");
-      print("Missing username");
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing exercisename");
       exit();
     }
 
-    if (isset($_REQUEST['password'])) {
-      $password = trim($_REQUEST['password']);
-    } else{
-      header("HTTP/1.0 400 Bad Request");
-      print("Missing username");
-      exit();
-    }
+    if (isset($_REQUEST['muscleId'])) {
+      $muscleId = trim($_REQUEST['muscleId']);
+    } 
     // Either creating or updating
 
 
       // Create new User via ORM
-    $new_User = User::create($username, $password);
+    $Exercise = Exercise::create($username, $password);
 
       // Report if failed
-    if ($new_User == null) {
+    if ($Exercise == null) {
       header("HTTP/1.0 500 Server Error");
-      print("Server couldn't create new User.");
+      print("Server couldn't create new Exercise.");
       exit();
     }
       
     //Generate JSON encoding of new User
     header("Content-type: application/json");
-    print($new_User->getUserId());
+    print($exercise->getJSON());
     exit();
     
   }

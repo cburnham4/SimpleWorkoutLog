@@ -4,7 +4,7 @@ class User
 {
   private $id;
   private $name;
-  private $password;
+  private $muscleId;
 
   public static function connect() {
     return new mysqli("classroom.cs.unc.edu", 

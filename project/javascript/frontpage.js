@@ -11,13 +11,18 @@ $(document).ready(function () {
 						  dataType: "json",
 						  data: $(this).serialize(),
 						  	success: function(data) {
-
+						  		alert("success");
 							  	console.log(data);
 							  	if (data.id != null)
 							  	{
 							  		$(location).attr('href', url_base + '/html/exercise_page.html');
 							  	}
-							}
+							},
+							error: function (xhr, ajaxOptions, thrownError) {
+						        alert(xhr.status);
+						        alert(thrownError);
+						      }
+
 						});
 
 			       });

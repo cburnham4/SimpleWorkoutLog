@@ -4,27 +4,45 @@ $(document).ready(function () {
 
 
 	$('#new_account_form').on('submit',
-			       function (e) {
-				   e.preventDefault();
-				   $.ajax(url_base + "/backend/users.php",
-					  {type: "POST",
-						  dataType: "json",
-						  data: $(this).serialize(),
-						  	success: function(data) {
-						  		alert("success");
-							  	console.log(data);
-							  	if (data.id != null)
-							  	{
-							  		$(location).attr('href', url_base + '/html/exercise_page.html');
-							  	}
-							},
-							error: function (xhr, ajaxOptions, thrownError) {
-						        alert(xhr.status);
-						        alert(thrownError);
-						      }
+	       function (e) {
+		   e.preventDefault();
+		   $.ajax(url_base + "/backend/users.php",
+			  {type: "POST",
+				  dataType: "json",
+				  data: $(this).serialize(),
+				  	success: function(data) {
+				  		alert("success");
+					  	console.log(data);
+					  	if (data.id != null)
+					  	{
+					  		$(location).attr('href', url_base + '/html/exercise_page.html');
+					  	}
+					},
+					error: function (xhr, ajaxOptions, thrownError) {
+				        alert(xhr.status);
+				        alert(thrownError);
+				      }
 
-						});
+				});
 
-			       });
+	       });
+
+	$('#login_form').on('submit',
+		function(e) {
+			var data = $(this).serialize();
+			var username = data.username;
+			var password = data.password;
+			$.ajax(url_base + "/backend/users.php?username=" + username + "&password=" + password,
+			{type: "GET",
+				dataType: "json",
+				success: function(data) {
+					console.log(data);
+					if (data.id != null)
+					{
+						$(location).attr('href', url_base + '/html/exercise_page.html');
+					}
+				}
+			});
+	});
 
 });

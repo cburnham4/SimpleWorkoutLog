@@ -13,11 +13,11 @@ class User
           "cvburnhadb");
   }
 
-  public static function create($name, $password) {
+  public static function create($name, $muscleId) {
     $mysqli = User::connect();
 
     /* Insert user into users */
-    $result = $mysqli->query("INSERT INTO Users (UserName, UserPassword)
+    $result = $mysqli->query("INSERT INTO Users (UserName, muscleId)
      VALUES (" . "'" . $mysqli->real_escape_string($name) . "', " .
 			     "'" . $mysqli->real_escape_string($password) . "') ");
 

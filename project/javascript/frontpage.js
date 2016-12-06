@@ -29,20 +29,39 @@ $(document).ready(function () {
 
 	$('#login_form').on('submit',
 		function(e) {
-			var data = $(this).serialize();
-			var username = data.username;
-			var password = data.password;
-			$.ajax(url_base + "/backend/users.php?username=" + username + "&password=" + password,
-			{type: "GET",
-				dataType: "json",
-				success: function(data) {
-					console.log(data);
-					if (data.id != null)
-					{
-						$(location).attr('href', url_base + '/html/exercise_page.html');
-					}
-				}
-			});
+			var params = $(this).serialize();
+
+
+
+			$.ajax({
+			        url: "http://wwwp.cs.unc.edu/Courses/comp426-f16/users/cvburnha/project/backend/users.php?username=asd&password=asd",
+			        type: 'GET',
+			        success: function(res) {
+			            console.log(res);
+			            alert(res);
+			        },
+			        
+			    });
+
+			// $.ajax(
+			// {
+			// 	url: url_base + "/backend/users.php?" + params,
+			// 	type: "GET",
+			// 	success: function(res) {
+			// 		alert(res);
+			// 		console.log(res);
+			// 		if (res != null)
+			// 		{
+			// 			console.log(url_base);
+			// 			$(location).attr('href', url_base + '/html/exercise_page.html');
+			// 		}
+			// 	},
+			// 	error: function (xhr, ajaxOptions, thrownError) {
+			// 		alert("error");
+			//         alert(xhr.status);
+			//         alert(thrownError);
+			//       }
+			// });
 	});
 
 });

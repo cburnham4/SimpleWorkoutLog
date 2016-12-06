@@ -19,7 +19,7 @@ class User
     /* Insert user into users */
     $result = $mysqli->query("INSERT INTO Users (UserName, muscleId)
      VALUES (" . "'" . $mysqli->real_escape_string($name) . "', " .
-			     "'" . $mysqli->real_escape_string($password) . "') ");
+			     "'" . $mysqli->real_escape_string($muscleId) . "') ");
 
     if ($result) {
       $id = $mysqli->insert_id;

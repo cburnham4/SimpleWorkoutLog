@@ -41,7 +41,8 @@ $(document).ready(function () {
 			        success: function(res) {
 			        	localStorage.setItem("usernameID", res.id);
 			            console.log(res);
-						$(location).attr('href', url_base + '/html/exercise_page.html');
+			            window.location.href = url_base + '/html/exercise_page.html';
+						//$(location).attr('href', url_base + '/html/exercise_page.html');
 			        }
 
 			    });

@@ -11,7 +11,25 @@ $(document).ready(function () {
 
 	userId = localStorage.getItem("usernameID");
 
+	var params = "?userId=" + userId;
+	var url_get = url_base + exercise_api + params;
+	$.ajax({
+        url: url_get,
+        type: 'GET',
+        success: function(res) {
+        	console.log(res);
+
+        	for (var i=0; i<res.length; i++) {
+   				var t = new Exercise(res[i]);
+   			}
+
+        }
+
+    });
+
+
 	$('#exercisenav').on('submit',
+
 		function(e) {
 			var params = "?userId=" + userId;
 
@@ -24,7 +42,7 @@ $(document).ready(function () {
 			        success: function(res) {
 			        	console.log(res);
 
-			        	for (var i=0; i<todo_ids.length; i++) {
+			        	for (var i=0; i<res.length; i++) {
 			   				var t = new Exercise(res[i]);
 		       			}
 

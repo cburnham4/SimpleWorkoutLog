@@ -5,23 +5,11 @@ var Exercise  = function(exercise_json){
 };
 
 Exercise.prototype.makeDiv = function() {
-    var cdiv = $("<div></div>");
+    var cdiv = $("<tr></tr>");
 
-    $('#exercisediv').append('<tr><th>Number</th><th>Exercise</th></tr>');
+    cdiv.append('<td>'+this.name+'</td>');
 
     cdiv.data('exercise', this);
 
     return cdiv;
 };
-
-				// <div>
-				// 	<table class="table table-hover">
-				// 	    <tr>
-				// 	    	<th>Number</th>
-				// 		    <th>Exercise</th>
-				// 		</tr>
-
-
-				// 	</table>	
-
-				// </div>

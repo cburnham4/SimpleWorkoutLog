@@ -11,14 +11,7 @@ $(document).ready(function () {
 
 	userId = localStorage.getItem("usernameID");
 
-
-
-});
-
-var show_exercises = function(){
-	/* Clear body */
-
-	$('#exercise_sidebar').on('submit',
+	$('#exercisenav').on('submit',
 		function(e) {
 			var params = "?userId=" + userId;
 
@@ -29,12 +22,17 @@ var show_exercises = function(){
 			        url: url_get,
 			        type: 'GET',
 			        success: function(res) {
-			        	localStorage.setItem("usernameID", res.id);
-			            console.log(res);
-						$(location).attr('href', url_base + '/html/exercise_page.html');
+			        	console.log(res);
+
+			        	for (var i=0; i<todo_ids.length; i++) {
+			   				var t = new Exercise(res[i]);
+		       			}
+
 			        }
 
 			    });
 
 	});
-}
+
+
+});

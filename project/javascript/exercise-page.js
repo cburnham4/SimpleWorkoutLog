@@ -9,7 +9,29 @@ var sets_api = "/backend/sets-api.php";
 var userId; 
 $(document).ready(function () {
 
+
 	userId = localStorage.getItem("usernameID");
+
+
+	$('#addExerciseForm').on('submit',
+	function(e) {
+		e.preventDefault();
+		var data = $(this).serialize() + "&userId=" + userId; 
+	    $.ajax(url_base + exercise_api,
+		  {type: "POST",
+			  dataType: "json",
+			  data: $(this).serialize(),
+			  	success: function(data) {
+			  		alert("success");
+				  	console.log(data);
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+			        alert(xhr.status);
+			        alert(thrownError);
+			      }
+
+			});
+	})
 
 	var params = "?userId=" + userId;
 	var url_get = url_base + exercise_api + params;

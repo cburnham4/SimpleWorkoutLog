@@ -7,7 +7,7 @@ var routine_exercise_api = "/backend/routines-exercise-api.php";
 var sets_api = "/backend/sets-api.php";
 
 var userId; 
-var muscles;
+var muscles =[];
 
 $(document).ready(function () {
 
@@ -16,34 +16,15 @@ $(document).ready(function () {
 	/* Get exercise ID */
 	load_exercises();
 
+	/* Get muscles into the muscle array */
+	
+
 
 	$('#exercisenav').on('click', load_exercises);
 		
 	$('#musclenav').on('click', load_muscles);
 
-	$('#routinenav').on('click',
-		function(e) {
-			$('h1').text('Routines');
-
-			var params = "?userId=" + userId;
-			var url_get = url_base + routine_api + params;
-			console.log(url_get);
-
-			$.ajax({
-			        url: url_get,
-			        type: 'GET',
-			        success: function(res) {
-			        	console.log(res);
-
-			        	for (var i=0; i<res.length; i++) {
-			   				//var t = new Exercise(res[i]);
-		       			}
-
-			        }
-
-			    });
-
-	});
+	$('#routinenav').on('click', load_routines);
 
 
 });
@@ -82,8 +63,30 @@ var load_muscles = function(){
         success: function(res) {
         	console.log(res);
         	for (var i=0; i<res.length; i++) {
-   				//var t = new Muscle(res[i]);
+   				var m = new Muscle(res[i]);
+   				muscles.push(m);
    			}
         }
-    });
+    });}
+
+var load_routines = function(){
+	$('h1').text('Routines');
+
+	var params = "?userId=" + userId;
+	var url_get = url_base + routine_api + params;
+	console.log(url_get);
+
+	$.ajax({
+	        url: url_get,
+	        type: 'GET',
+	        success: function(res) {
+	        	console.log(res);
+
+	        	for (var i=0; i<res.length; i++) {
+	   				//var t = new Exercise(res[i]);
+       			}
+
+	        }
+
+	    });
 }

@@ -11,13 +11,37 @@ var muscles =[];
 
 $(document).ready(function () {
 
+
 	userId = localStorage.getItem("usernameID");
+
+
+	$('#addExerciseForm').on('submit',
+	function(e) {
+		e.preventDefault();
+		var data = $(this).serialize() + "&userId=" + userId; 
+	    $.ajax(url_base + exercise_api,
+		  {type: "POST",
+			  dataType: "json",
+			  data: $(this).serialize(),
+			  	success: function(data) {
+			  		alert("success");
+				  	console.log(data);
+				},
+				error: function (xhr, ajaxOptions, thrownError) {
+			        alert(xhr.status);
+			        alert(thrownError);
+			      }
+
+			});
+	})
+
 
 	/* Get exercise ID */
 	load_exercises();
 
 	/* Get muscles into the muscle array */
 	
+
 
 
 	$('#exercisenav').on('click', load_exercises);
@@ -90,3 +114,10 @@ var load_routines = function(){
 
 	    });
 }
+
+var clear_table = function () {
+	$("#exercisediv").empty();
+	$("#exercisediv").append("<tr><th>Exercise</th></tr>");
+
+}
+

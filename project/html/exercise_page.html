@@ -81,7 +81,7 @@
 
 				</div>
 
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExerciseModal" data-whatever="Exercise">Add Exercise</button>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExerciseModal">Add Exercise</button>
 
 			</div>
 
@@ -93,15 +93,16 @@
 							<h4 class="modal-title" id="exerciseModalLabel">New Exercise</h4>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form id="addExerciseForm">
 								<div class="form-group">
 									<label for="exerciseName" class="control-label">Name:</label>
-									<input type="text" class="form-control" id="exercise-name">
+									<input type="text" name="name" class="form-control" id="exercise-name">
+									<input type="submit" name="addExercise" class="btn btn-primary" value="Add Exercise">
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-defaul" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</div>
 					</div>
 				</div>

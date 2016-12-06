@@ -13,7 +13,7 @@
 
       /* If only userid specified then get all exercises based on user */
       header("Content-type: application/json");
-      print(json_encode(Routine::getRouines($userId)));
+      print(json_encode(Routine::getRoutines($userId)));
       exit();
     } 
 

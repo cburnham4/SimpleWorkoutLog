@@ -10,7 +10,7 @@ class Routine
   }
 
   public static function getRoutines($uid){
-    $mysqli = Muscle::connect();
+    $mysqli = Routine::connect();
 
     $result = $mysqli->query("SELECT RID, RoutineName FROM Routines WHERE UserID = " . $uid);
 

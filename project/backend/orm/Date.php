@@ -1,5 +1,8 @@
 <?php
 date_default_timezone_set('America/New_York');
+
+
+  require_once("orm/Set.php");
 class Date{
 
   private $did;
@@ -57,10 +60,45 @@ class Date{
     return null;
   }
 
+    /* Get all the sets and dates for that exercise Id */
+  public static function getDateSets($eid){
+    $mysqli = Date::connect();
+
+    /* Get all the days for that exercise */
+    $sql_dates = "select DID, Date from DaysTable
+      where EID = '" . $eid  ."'";
+
+    $result_dates = $mysqli->query($sql_dates);
+
+    if($result_dates){
+      if ($result_dates->num_rows == 0) {
+        return null;
+      }
+      $days = array();
+
+      while($next_row = $result_dates->fetch_array()){
+        $did = $next_row['DID'];
+        $date = $next_row['Date'];
+        $past_sets = Set::getSetsByDay($did);
+
+
+        $json_obj = array('did' => $did,
+                  'date' => $date,
+                  'past_sets' => $past_sets
+                  );
+        $days[] = $json_obj;  
+      }
+
+      return $days;
+    }
+    return null;
+  }
+
   private function __construct($did, $date) {
     $this->did = $did;
     $this->date_lifted = $date;
   }
+
 
 
 

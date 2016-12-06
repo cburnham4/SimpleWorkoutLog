@@ -26,13 +26,8 @@
     if (isset($_REQUEST['eid'])) {
       $eid = trim($_REQUEST['eid']);
       Exercise::deleteExerciseById($eid);
-    exit();
-    } else {
-      header("HTTP/1.0 400 Bad Request");
-      print("Missing exercise id");
       exit();
     }
-
 
 
 

@@ -51,6 +51,26 @@ class Exercise
     return $exercises;
   }
 
+  public static function getExercisesByEid($eid){
+    $mysqli = Exercise::connect();
+
+    $result = $mysqli->query("SELECT EID, ExerciseName, MID FROM Exercises WHERE EID = " . $eid);
+
+    $exercises = array();
+
+    if($result){
+      $next_row = $result->fetch_array();
+
+      $json_obj = array('eid' => $next_row['EID'],
+                  'name' => $next_row['ExerciseName'],
+                  'mid' => $next_row['MID']);
+
+      return $json_obj; 
+    }
+
+    return null;
+  }
+
   public static function deleteExerciseById($eid){
     $mysqli = Exercise::connect();
 

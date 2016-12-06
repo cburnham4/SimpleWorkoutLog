@@ -1,5 +1,8 @@
 <?php
 date_default_timezone_set('America/New_York');
+
+require_once("orm/Exercise.php");
+
 class Routine
 {
   private $rid;
@@ -28,7 +31,6 @@ class Routine
         $routines[] = $json_obj;  
       }
     }
-
     return $routines;
   }
 
@@ -39,7 +41,6 @@ class Routine
     $result = $mysqli->query("INSERT INTO Routines (RoutineName, UserID)
      VALUES (" . "'" . $mysqli->real_escape_string($name) . "', " .
            "'" . $mysqli->real_escape_string($userId) . "' )" );
-            
 
     if ($result) {
       $rid = $mysqli->insert_id;
@@ -61,6 +62,38 @@ class Routine
     }
 
     return "Deleted Set";
+  }
+
+  public static function addExerciseToRoutine($rid, $eid){
+    $mysqli = Routine::connect();
+
+    $sql = "INSERT INTO RoutineExercise (RID, EID) 
+            VALUES (" . $rid .", " . $eid . ")";
+
+    $result =  $mysqli->query($sql);
+
+   if($result){
+      return "Success";
+   }
+   return "Not Successful";
+  }
+
+  public static function getExercisesByRoutine($rid){
+    $mysqli = Routine::connect();
+
+    $result = $mysqli->query("SELECT EID FROM RoutineExercise WHERE RID = " . $rid);
+
+    $exercises = array();
+
+    if($result){
+
+      while($next_row = $result->fetch_array()){
+        $eid = $next_row['EID'];  
+
+        $exercises[] = Exercise::getExercisesByEid($eid);
+      }
+    }
+    return $exercises;
   }
 
   private function __construct($rid, $name, $userId) {

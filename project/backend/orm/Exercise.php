@@ -51,6 +51,14 @@ class Exercise
     return $exercises;
   }
 
+  public static function deleteExercises($eid){
+    $mysqli = Exercise::connect();
+
+    $result = $mysqli->query("DELETE FROM Exercises WHERE EID = " . $eid);
+
+    return "Deleted Exercise";
+  }
+
 
 
   private function __construct($id, $name, $userId, $mid) {

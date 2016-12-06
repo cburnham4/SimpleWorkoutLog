@@ -2,6 +2,10 @@
 date_default_timezone_set('America/New_York');
 class Routine
 {
+  private $rid;
+  private $name;
+  private $userId;
+
   public static function connect() {
     return new mysqli("classroom.cs.unc.edu", 
           "cvburnha", 
@@ -28,4 +32,37 @@ class Routine
     return $routines;
   }
 
+  public static function create($name, $userId) {
+    $mysqli = Routine::connect();
+
+    /* Insert user into users */
+    $result = $mysqli->query("INSERT INTO Routines (RoutineName, UserID)
+     VALUES (" . "'" . $mysqli->real_escape_string($name) . "', " .
+           "'" . $mysqli->real_escape_string($userId) . "' )" );
+            
+
+    if ($result) {
+      $rid = $mysqli->insert_id;
+      return new Routine($rid, $name, $userId);
+    }
+    return null;
+  }
+
+  private function __construct($rid, $name, $userId) {
+    $this->rid = $rid;
+    $this->name = $name;
+    $this->userId = $userId;
+  }
+
+  public function getJSON() {
+    $json_obj = array('rid' => $this->rid,
+                      'name' => $this->name,
+                      'uid' => $this->userId
+                      );
+
+    return json_encode($json_obj);
+  }
+
 }
+
+?>

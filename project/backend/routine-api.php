@@ -17,6 +17,42 @@
       exit();
     } 
 
+  } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-  } 
+        /* Create the new exercise */
+    if (isset($_REQUEST['name'])) {
+      $name = trim($_REQUEST['name']);
+    } else {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing routine name");
+      exit();
+    }
+
+    if (isset($_REQUEST['userId'])) {
+      $userId = trim($_REQUEST['userId']);
+    } else {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing user id");
+      exit();
+    }
+
+    // Create new User via ORM
+    $routine = Routine::create($name, $userId);
+
+      // Report if failed
+    if ($routine == null) {
+      header("HTTP/1.0 500 Server Error");
+      print("Server couldn't create new Routine.");
+      exit();
+    }
+      
+    //Generate JSON encoding of new User
+    header("Content-type: application/json");
+    print($routine->getJSON());
+    exit();
+
+  }
+
+
+
 ?>

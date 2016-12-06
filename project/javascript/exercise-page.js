@@ -18,14 +18,18 @@ $(document).ready(function () {
 	$('#addExerciseForm').on('submit',
 	function(e) {
 		e.preventDefault();
-		var data = $(this).serialize() + "&userId=" + userId; 
+		var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
+		//var data = params.serialize();
 	    $.ajax(url_base + exercise_api,
 		  {type: "POST",
 			  dataType: "json",
-			  data: $(this).serialize(),
+			  data: params,
 			  	success: function(data) {
-			  		alert("success");
 				  	console.log(data);
+				  	var t = new Exercise(data);
+			   		$("#exercisediv").append(t.makeDiv());
+			   		
+
 				},
 				error: function (xhr, ajaxOptions, thrownError) {
 			        alert(xhr.status);

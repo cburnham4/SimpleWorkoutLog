@@ -2,7 +2,7 @@
 date_default_timezone_set('America/New_York');
 class Exercise
 {
-  private $id;
+  private $eid;
   private $name;
   private $userId;
   private $mid;
@@ -25,8 +25,8 @@ class Exercise
             
 
     if ($result) {
-      $id = $mysqli->insert_id;
-      return new Exercise($id, $name, $userId, $mid);
+      $eid = $mysqli->insert_id;
+      return new Exercise($eid, $name, $userId, $mid);
     }
     return null;
   }
@@ -40,7 +40,7 @@ class Exercise
 
     if($result){
       while($next_row = $result->fetch_array()){
-        $json_obj = array('id' => $next_row['EID'],
+        $json_obj = array('eid' => $next_row['EID'],
                   'name' => $next_row['ExerciseName'],
                   'mid' => $next_row['MID'],
                   );
@@ -61,15 +61,15 @@ class Exercise
 
 
 
-  private function __construct($id, $name, $userId, $mid) {
-    $this->id = $id;
+  private function __construct($eid, $name, $userId, $mid) {
+    $this->eid = $eid;
     $this->name = $name;
     $this->userId = $userId;
     $this->mid = $mid;
   }
 
   public function getJSON() {
-    $json_obj = array('id' => $this->id,
+    $json_obj = array('eid' => $this->eid,
                       'name' => $this->name,
                       'mid' => $this->mid
                       );

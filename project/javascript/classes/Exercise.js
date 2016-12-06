@@ -13,3 +13,4 @@ Exercise.prototype.makeDiv = function() {
 
     return cdiv;
 };
+

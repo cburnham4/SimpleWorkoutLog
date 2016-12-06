@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Workout Log</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
+
+
+  </head>
+
+  <body>
+
+  <div class="container-fluid" style="margin-left:20px">
+    <div class="row">
+    <h1> Online Workout Log</h1>
+
+    <h3> Team Members </h3>
+
+    <ul>
+      <li>Carl Burnham - cvburnha</li>
+      <li>Brian Campoli - campoli</li>
+      <li>Kendrick Hales - kjhales</li>
+    </ul>
+
+    <h3> Project Description </h3>
+    <p> 
+      Our project is an online workout log. The user will be able to log into our website and store all of his or hers reps and sets for each exercise. The content will be user generated and stored in a MySQL database. Upon login, the user will be able to add exercises then be able to add those exercises to user created routines and predefined muscle groups. </p>
+
+      <p>
+      Once the user has added all exercises, one can click on the exercise to bring up options specific for that exercise. The user will be able to add new reps and sets, view past workouts, or view a graph of previous lifts. 
+        </p>
+
+
+    <h3> Mockups </h3>
+
+    <p> The initial home page is currently stored at <a href='./html/index.html'>Here</a> . The user will first see this page and be able to login or register for out site. Upon logging in, the user will be directed to our next page which is currently stored at 'html/exercise_page.html'  </p>
+  </div>
+
+  <div class="row">
+    <!-- Document the database schema -->
+    <h2> Database Schema </h2>
+    <div class="col-md-4">
+    
+
+    <h3> Tables </h3>
+    <ul>
+      <li>Exercise Table
+        <ul>
+          <li>Exercise ID</li>
+          <li>Exercise Name</li>
+          <li>Foreign Key - Muscle ID </li>
+        </ul>
+      </li>
+
+      <li>Muscle Table
+        <ul>
+          <li>Muscle ID</li>
+          <li>Muscle Name</li>
+        </ul>
+      </li>
+
+      <li>Routine Table
+        <ul>
+          <li>Routine ID</li>
+          <li>Routine Name</li>
+        </ul>
+      </li>
+
+      <li>Routine/Exercise Table - Link the routine to its exercise
+        <ul>
+          <li>Routine ID</li>
+          <li>Exercise ID</li>
+        </ul>
+      </li>
+
+      <li>Days table
+        <ul>
+          <li>Day ID</li>
+          <li>Exercise ID -Foreign key</li>
+          <li>Date Lifted</li>
+        </ul>
+      </li>
+
+      <li>Sets Table
+        <ul>
+          <li>Sets Id</li>
+          <li>Day ID -Foreign key</li>
+          <li>Reps</li>
+          <li>Weight</li>
+        </ul>
+      </li>
+
+      <li>Max Table - Record the users maxes
+        <ul>
+          <li>Max Id</li>
+          <li>Max Weight</li>
+          <li>Day ID -Foreign key</li>
+          <li>Sets ID - Foreign Key</li>
+          <li>Exercise Id - Foreign Key</li>
+        </ul>
+      </li>
+
+    </ul>
+    </div> <!-- End col-md-4-->
+    <div class="col-md-8">
+
+      <div class="dbimg">
+        <h3>DB Schema Design</h3>
+        <img src="./DatabaseSchemaDesign.PNG" alt="DB Schema" class="img-rounded" width="750px" height="500px">
+      </div>
+      
+    </div>
+  </div> <!-- End DB Schema Row-->
+
+    <div class="row">
+      <h2>Server Side API</h2>
+        <div class="col-md-6">
+        
+        <h3>ORM</h3>
+
+        <ul>
+          <li>Exercise Object
+            <ul>
+              <li>create(name, muscleID)</li>
+              <li>getAllExercises()</li>
+              <li>getExerciseById(id)</li>
+              <li>updateExercise(id, newName, muscleId)</li>
+              <li>deleteExercise(id)</li>
+            </ul>
+          </li>
+
+          <li>Muscle Object
+            <ul>
+              <li>create(name)</li>
+              <li>getAllMuscles()</li>
+              <li>getMuscleById(id)</li>
+              <li>updateMuscle(id, newName)</li>
+              <li>deleteMuscle(id)</li>
+            </ul>
+          </li>
+
+          <li>Routine Object
+            <ul>
+              <li>create(name)</li>
+              <li>getAllRoutines()</li>
+              <li>getRoutineById(id)</li>
+              <li>getExercisedInRoutine(id)</li>
+              <li>deleteRoutine(id)</li>
+            </ul>
+          </li>
+
+          <li>Day Object
+            <ul>
+              <li>create(date)</li>
+              <li>getDatesAndSets(exerciseID) // Use SQL join to get all sets for every date for selected exercise</li>
+              <li>getDate(id)</li>
+            </ul>
+          </li>
+
+          <li>Set Object
+            <ul>
+              <li>create(dayid, reps, weight)</li>
+              <li>getSetsByDay(dayId)</li>
+              <li>updateSet(id, reps, weight)</li>
+              <li>deleteSet(id)</li>
+            </ul>
+          </li>
+        </ul>
+      </div> 
+
+        <div class="col-md-6">
+              <h3>Web facing URLS</h3>
+                <ul>
+                  <li>exercise-api.php</li>
+                  <li>muscle-api.php</li>
+                  <li>routine-api.php</li>
+                  <li>day-api.php</li>
+                  <li>sets-api.php</li>
+                </ul>
+        </div>
+
+  </div><!-- End Server Side API Row-->
+
+  <div class="row">
+  <h1>JSON Object Examples</h1>
+    <div class="col-md-6 ">
+      
+        <pre>
+          <code>
+            /* Exercise Object */
+            {"Exercise":[
+                {"ID":1, "EXERCISE_NAME":"Bench Press"},
+                {"ID":2, "EXERCISE_NAME":"Leg Press"},
+                {"ID":3, "EXERCISE_NAME":"Squats"},
+            ]}
+
+
+            /* Muscle Object */
+            {"Muscle":[
+                {"ID":1, "MUSCLE_NAME":"Biceps"},
+                {"ID":2, "MUSCLE_NAME":"Triceps},
+                {"ID":3, "MUSCLE_NAME":"Traps"},
+            ]}
+
+
+            /* Routine Object */
+            {"Routine":[
+                {"ID":1, "ROUTINE_NAME":"Barbell"},
+                {"ID":2, "ROUTINE_NAME":"Leg Press},
+                {"ID":3, "ROUTINE_NAME":"Dumbell Lunge"},
+            ]}
+
+          </code>
+        </pre>
+
+    </div>
+    <div class="col-md-6">
+      <pre>
+        <code>
+            /* Date + Sets Object*/
+            {
+            "EXERCISE_ID": 1,
+            "EXERCISE_NAME": "Bench",
+            "Dates": [{
+              "ID": 1,
+              "DATE": "10-30-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 8,
+                "WEIGHT": 285
+              }, {
+                "REPS": 6,
+                "WEIGHT": 325
+              }]
+            }, {
+              "ID": 2,
+              "DATE": "11-35-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 10,
+                "WEIGHT": 285
+              }, {
+                "REPS": 8,
+                "WEIGHT": 325
+              }]
+            }, {
+              "ID": 3,
+              "DATE": "11-30-2016",
+              "PAST_SETS": [{
+                "REPS": 10,
+                "WEIGHT": 225
+              }, {
+                "REPS": 8,
+                "WEIGHT": 295
+              }, {
+                "REPS": 6,
+                "WEIGHT": 345
+              }]
+            }]
+          }
+        </code>
+      </pre>
+    </div>
+
+  </div>
+
+  
+ </div>
+
+
+
+  </body>
+ 
+
+    <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</html>

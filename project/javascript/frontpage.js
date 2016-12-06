@@ -42,7 +42,7 @@ $(document).ready(function () {
 			        	localStorage.setItem("usernameID", res.id);
 			            console.log(res);
 						$(location).attr('href', url_base + '/html/exercise_page.html');
-			        },
+			        }
 
 			    });
 

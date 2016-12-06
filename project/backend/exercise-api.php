@@ -3,49 +3,49 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  require_once("orm/User.php");
+  require_once("orm/Exercise.php");
 
 
   if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    /* Get request parameters */
-    if (isset($_GET['username'])) {
-      $username = trim($_GET['username']);
-    } else {
-      header("HTTP/1.0 400 Bad Request");
-      print("Missing username");
-      exit();
-    }
+    // /* Get request parameters */
+    // if (isset($_GET['username'])) {
+    //   $username = trim($_GET['username']);
+    // } else {
+    //   header("HTTP/1.0 400 Bad Request");
+    //   print("Missing username");
+    //   exit();
+    // }
 
-    if (isset($_GET['password'])) {
-      $password = trim($_GET['password']);;
-    } else {
-      header("HTTP/1.0 400 Bad Request");
-      print("Missing password");
-      exit();
-    }
+    // if (isset($_GET['password'])) {
+    //   $password = trim($_GET['password']);;
+    // } else {
+    //   header("HTTP/1.0 400 Bad Request");
+    //   print("Missing password");
+    //   exit();
+    // }
 
-    /* Find the user */
-    $User = User::findUser($username, $password);
+    // /* Find the user */
+    // $User = User::findUser($username, $password);
 
 
-    if ($User == null) {
-      // User not found.
-      header("HTTP/1.0 404 Not Found");
-      print("User: " . $username . " not found.");
-      exit();
-    }
+    // if ($User == null) {
+    //   // User not found.
+    //   header("HTTP/1.0 404 Not Found");
+    //   print("User: " . $username . " not found.");
+    //   exit();
+    // }
 
-    //Generate JSON encoding of new User
-    header("Content-type: application/json");
-    print($User->getUserId());
-    exit();
+    // //Generate JSON encoding of new User
+    // header("Content-type: application/json");
+    // print($User->getUserId());
+    // exit();
 
   } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     /* Create the new exercise */
     if (isset($_REQUEST['name'])) {
-      $username = trim($_REQUEST['name']);
+      $name = trim($_REQUEST['name']);
     } else {
       header("HTTP/1.0 400 Bad Request");
       print("Missing exercisename");
@@ -55,14 +55,18 @@
     if (isset($_REQUEST['muscleId'])) {
       $muscleId = trim($_REQUEST['muscleId']);
     } 
+
+    if (isset($_REQUEST['userId'])) {
+      $userId = trim($_REQUEST['userId']);
+    } 
     // Either creating or updating
 
 
       // Create new User via ORM
-    $Exercise = Exercise::create($username, $password);
+    $exercise = Exercise::create($name, $userId, $muscleId);
 
       // Report if failed
-    if ($Exercise == null) {
+    if ($exercise == null) {
       header("HTTP/1.0 500 Server Error");
       print("Server couldn't create new Exercise.");
       exit();

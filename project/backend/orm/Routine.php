@@ -48,6 +48,21 @@ class Routine
     return null;
   }
 
+  /* Delete the set based on sid */
+  public static function deleteRoutineById($rid){
+  $mysqli = Routine::connect();
+
+    $result = $mysqli->query("DELETE FROM Routines WHERE RID = " . $rid);
+
+    if($result == TRUE){
+      return "Successful Deletion";
+    }else{
+      return "Deletion failed";
+    }
+
+    return "Deleted Set";
+  }
+
   private function __construct($rid, $name, $userId) {
     $this->rid = $rid;
     $this->name = $name;

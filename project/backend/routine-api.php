@@ -19,6 +19,14 @@
 
   } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+
+     if (isset($_REQUEST['rid'])) {
+        $rid = trim($_REQUEST['rid']);
+        $success = Routine::deleteRoutineById($rid);
+        print($success);
+        exit();
+     }
+
         /* Create the new exercise */
     if (isset($_REQUEST['name'])) {
       $name = trim($_REQUEST['name']);
@@ -36,6 +44,8 @@
       exit();
     }
 
+
+
     // Create new User via ORM
     $routine = Routine::create($name, $userId);
 
@@ -52,7 +62,6 @@
     exit();
 
   }
-
 
 
 ?>

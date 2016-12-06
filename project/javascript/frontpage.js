@@ -31,16 +31,17 @@ $(document).ready(function () {
 		function(e) {
 			var params = $(this).serialize();
 
-
+			var url_get = url_base + "/backend/users.php?" + params;
+			console.log(url_get);
 
 			$.ajax({
-			        url: "http://wwwp.cs.unc.edu/Courses/comp426-f16/users/cvburnha/project/backend/users.php?username=asd&password=asd",
+			        url: url_get,
 			        type: 'GET',
 			        success: function(res) {
 			            console.log(res);
-			            alert(res);
+						$(location).attr('href', url_base + '/html/exercise_page.html');
 			        },
-			        
+
 			    });
 
 			// $.ajax(

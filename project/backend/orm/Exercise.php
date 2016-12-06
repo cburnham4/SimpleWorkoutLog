@@ -31,6 +31,26 @@ class Exercise
     return null;
   }
 
+  public static function getExercises($userId){
+    $mysqli = Exercise::connect();
+
+    $result = $mysqli->query("SELECT EID, ExerciseName, MID FROM Exercises WHERE UserID = " .$userId);
+
+    $exercises = array();
+
+    if($result){
+      while($next_row = $result->fetch_array()){
+        $json_obj = array('id' => $next_row['EID'],
+                  'name' => $next_row['ExerciseName'],
+                  'mid' => $next_row['MID'],
+                  );
+        $exercises[] = $json_obj;  
+      }
+    }
+
+    return $exercises;
+  }
+
 
 
   private function __construct($id, $name, $userId, $mid) {
@@ -39,16 +59,6 @@ class Exercise
     $this->userId = $userId;
     $this->mid = $mid;
   }
-
-  public function getID() {
-    return $this->id;
-  }
-
-
-  public function getName() {
-    return $this->name;
-  }
-
 
   public function getJSON() {
     $json_obj = array('id' => $this->id,

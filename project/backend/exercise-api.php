@@ -8,38 +8,15 @@
 
   if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    // /* Get request parameters */
-    // if (isset($_GET['username'])) {
-    //   $username = trim($_GET['username']);
-    // } else {
-    //   header("HTTP/1.0 400 Bad Request");
-    //   print("Missing username");
-    //   exit();
-    // }
+    if (isset($_REQUEST['userId'])) {
+      $userId = trim($_REQUEST['userId']);
 
-    // if (isset($_GET['password'])) {
-    //   $password = trim($_GET['password']);;
-    // } else {
-    //   header("HTTP/1.0 400 Bad Request");
-    //   print("Missing password");
-    //   exit();
-    // }
+      /* If only userid specified then get all exercises based on user */
+      header("Content-type: application/json");
+      print(json_encode(Exercise::getExercises($userId)));
+      exit();
+    } 
 
-    // /* Find the user */
-    // $User = User::findUser($username, $password);
-
-
-    // if ($User == null) {
-    //   // User not found.
-    //   header("HTTP/1.0 404 Not Found");
-    //   print("User: " . $username . " not found.");
-    //   exit();
-    // }
-
-    // //Generate JSON encoding of new User
-    // header("Content-type: application/json");
-    // print($User->getUserId());
-    // exit();
 
   } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 

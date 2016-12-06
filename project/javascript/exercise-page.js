@@ -87,3 +87,9 @@ var load_muscles = function(){
         }
     });
 }
+
+var clear_table = function () {
+	$("#exercisediv").empty();
+	$("#exercisediv").append(<tr><th>Exercise</th></tr>);
+
+}

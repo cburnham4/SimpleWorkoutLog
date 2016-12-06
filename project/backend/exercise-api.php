@@ -18,7 +18,22 @@
     } 
 
 
-  } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  } /* END GET */ 
+  else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+    /* Use POST for delete because delete is not allowed on the classroom server */
+    /* Get exercise id */
+    if (isset($_REQUEST['eid'])) {
+      $eid = trim($_REQUEST['eid']);
+      Exercise::deleteExerciseById($eid);
+    exit();
+    } else {
+      header("HTTP/1.0 400 Bad Request");
+      print("Missing exercise id");
+      exit();
+    }
+
+
 
 
     /* Create the new exercise */
@@ -55,20 +70,6 @@
     print($exercise->getJSON());
     exit();
     
-  } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
-    /* Get exercise id */
-
-    if (isset($_REQUEST['eid'])) {
-      $eid = trim($_REQUEST['eid']);
-    } else {
-      header("HTTP/1.0 400 Bad Request");
-      print("Missing exercise id");
-      exit();
-    }
-
-    Exercise::deleteExercise($eid);
-    exit();
-
   } // END POST 
 
   // If here, none of the above applied and URL could

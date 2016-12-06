@@ -11,14 +11,25 @@ $(document).ready(function () {
 
 	userId = localStorage.getItem("usernameID");
 
+	var params = "?userId=" + userId;
+	var url_get = url_base + exercise_api + params;
+	$.ajax({
+        url: url_get,
+        type: 'GET',
+        success: function(res) {
+        	console.log(res);
+
+        	for (var i=0; i<res.length; i++) {
+   				var t = new Exercise(res[i]);
+   			}
+
+        }
+
+    });
 
 
-});
+	$('#exercisenav').on('submit',
 
-var show_exercises = function(){
-	/* Clear body */
-
-	$('#exercise_sidebar').on('submit',
 		function(e) {
 			var params = "?userId=" + userId;
 
@@ -29,12 +40,17 @@ var show_exercises = function(){
 			        url: url_get,
 			        type: 'GET',
 			        success: function(res) {
-			        	localStorage.setItem("usernameID", res.id);
-			            console.log(res);
-						$(location).attr('href', url_base + '/html/exercise_page.html');
+			        	console.log(res);
+
+			        	for (var i=0; i<res.length; i++) {
+			   				var t = new Exercise(res[i]);
+		       			}
+
 			        }
 
 			    });
 
 	});
-}
+
+
+});

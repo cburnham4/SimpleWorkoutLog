@@ -99,11 +99,33 @@
 						Curabitur finibus vestibulum sapien, vitae bibendum ligula eleifend id. Nam gravida, odio in rutrum dapibus, mauris quam hendrerit turpis, congue commodo orci urna ut augue. Nam tincidunt enim lacus, ut consectetur turpis viverra a. Nunc ullamcorper consequat gravida. In rhoncus mi vitae lacus consectetur, eu porta augue vehicula. Praesent eget erat suscipit, tristique enim ultrices, dictum sem. Integer tempor velit vel nulla volutpat, ut interdum nunc condimentum. Praesent ultrices mauris leo. Quisque ac dolor porta, congue nibh eu, rhoncus orci. Donec ex augue, tempor ac diam dictum, scelerisque ultricies tortor. Quisque risus dui, molestie ut sapien non, aliquet tempus est.
 					</p>
 
-					<button>Add Exercise</button>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExerciseModal" data-whatever="Exercise">Add Exercise</button>
 
 				</div>
 				<div class="row placeholders">
 
+				</div>
+			</div>
+
+			<div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialogue" aria-labelledby="exerciseModalLabel">
+				<div class="modal-dialogue" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="exerciseModalLabel">New Exercise</h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="exerciseName" class="control-label">Name:</label>
+									<input type="text" class="form-control" id="exercise-name">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-defaul" data-dismiss="modal">Close</button>
+						</div>
+					</div>
 				</div>
 			</div>
 

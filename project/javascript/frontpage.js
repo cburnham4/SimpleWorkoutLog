@@ -15,6 +15,7 @@ $(document).ready(function () {
 					  	console.log(data);
 					  	if (data.id != null)
 					  	{
+					  		localStorage.setItem("usernameID", data.id);
 					  		$(location).attr('href', url_base + '/html/exercise_page.html');
 					  	}
 					},
@@ -38,6 +39,7 @@ $(document).ready(function () {
 			        url: url_get,
 			        type: 'GET',
 			        success: function(res) {
+			        	localStorage.setItem("usernameID", res.id);
 			            console.log(res);
 						$(location).attr('href', url_base + '/html/exercise_page.html');
 			        },

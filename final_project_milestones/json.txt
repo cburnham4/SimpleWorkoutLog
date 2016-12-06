@@ -37,14 +37,47 @@
   ]
 }
 
-{"Day":[
-    {"ID":1, "DATE":"10-30-2016"},
-    {"ID":2, "DATE":"08-15-2008"},
-    {"ID":3, "DATE":"3-07-2011"},
-]}
-
-{"Set":[
-    {"ID":1, "DATE":"10-30-2016"},
-    {"ID":2, "DATE":"08-15-2008"},
-    {"ID":3, "DATE":"3-07-2011"},
-]}
+{
+  "EXERCISE_ID": 1,
+  "EXERCISE_NAME": "Bench",
+  "Dates": [{
+    "ID": 1,
+    "DATE": "10-30-2016",
+    "PAST_SETS": [{
+      "REPS": 10,
+      "WEIGHT": 225
+    }, {
+      "REPS": 8,
+      "WEIGHT": 285
+    }, {
+      "REPS": 6,
+      "WEIGHT": 325
+    }]
+  }, {
+    "ID": 1,
+    "DATE": "11-35-2016",
+    "PAST_SETS": [{
+      "REPS": 10,
+      "WEIGHT": 225
+    }, {
+      "REPS": 10,
+      "WEIGHT": 285
+    }, {
+      "REPS": 8,
+      "WEIGHT": 325
+    }]
+  }, {
+    "ID": 1,
+    "DATE": "11-30-2016",
+    "PAST_SETS": [{
+      "REPS": 10,
+      "WEIGHT": 225
+    }, {
+      "REPS": 8,
+      "WEIGHT": 295
+    }, {
+      "REPS": 6,
+      "WEIGHT": 345
+    }]
+  }]
+}

@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 	$('#exercisenav').on('click',
 		function(e) {
-			$('#dataID').text('Exercises');
+			$('h1').text('Exercises');
 
 			var params = "?userId=" + userId;
 
@@ -45,6 +45,7 @@ $(document).ready(function () {
 
 			        	for (var i=0; i<res.length; i++) {
 			   				var t = new Exercise(res[i]);
+			   				$("#exercisediv").append(t.makeDiv());
 		       			}
 
 			        }
@@ -55,7 +56,7 @@ $(document).ready(function () {
 
 	$('#musclenav').on('click',
 		function(e) {
-			$('#dataID').text('Muscles');
+			$("h1").text("Muscles");
 			var url_get = url_base + muscle_api;
 			console.log(url_get);
 
@@ -77,7 +78,7 @@ $(document).ready(function () {
 
 	$('#routinenav').on('click',
 		function(e) {
-			$('#dataID').text('Routines');
+			$('h1').text('Routines');
 
 			var params = "?userId=" + userId;
 			var url_get = url_base + routine_api + params;

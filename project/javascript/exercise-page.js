@@ -11,8 +11,7 @@ var muscles =[];
 
 $(document).ready(function () {
 
-	$("#maindiv").empty();
-	$("#maindiv").load("content.html");
+
 
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	
@@ -85,6 +84,10 @@ $(document).ready(function () {
 	       delete_exercise(exercise.eid, $(this).parent());
 	   });
 
+	/* LOAD CONTENT 
+		$("#maindiv").empty();
+	$("#maindiv").load("../html/content.html");
+	*/
 
 });
 

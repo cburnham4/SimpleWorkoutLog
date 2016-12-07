@@ -41,9 +41,15 @@ $(document).ready(function () {
 			        success: function(res) {
 			        	localStorage.setItem("usernameID", res.id);
 			            console.log(res);
-			            window.location.href = url_base + '/html/exercise_page.html';
+
+			            window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f16/users/cvburnha/project/html/exercise_page.html";
 						//$(location).attr('href', url_base + '/html/exercise_page.html');
-			        }
+			        },
+
+					error: function (xhr, ajaxOptions, thrownError) {
+				        alert("User Not Found");
+				        
+				      }
 
 			    });
 

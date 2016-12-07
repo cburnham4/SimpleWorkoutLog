@@ -12,7 +12,7 @@ var fMuscles = [Shoulders, chest, biceps];
 
 $(document).ready(function () {
 	/* Get muscles into the muscle array */
-	load_muscles_initial();	
+	load_muscles_initial();		
 
 	/* Get exercises */
 	load_exercises();

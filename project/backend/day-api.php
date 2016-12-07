@@ -29,7 +29,7 @@
 	    print($date->getJSON());
 	    exit();
     } /* ELSE: create new date in the database */
-    else{
+      else{
       	$date  = Date::create($eid);
 
       	if($date == null){

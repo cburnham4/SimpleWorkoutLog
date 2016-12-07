@@ -30,6 +30,7 @@ $(document).ready(function () {
 
 	$('#login_form').on('submit',
 		function(e) {
+			e.preventDefault();
 			var params = $(this).serialize();
 
 			var url_get = url_base + "/backend/users.php?" + params;
@@ -41,11 +42,19 @@ $(document).ready(function () {
 			        success: function(res) {
 			        	localStorage.setItem("usernameID", res.id);
 			            console.log(res);
-			            window.location.href = url_base + '/html/exercise_page.html';
+
+			            window.location.href = "http://wwwp.cs.unc.edu/Courses/comp426-f16/users/cvburnha/project/html/exercise_page.html";
 						//$(location).attr('href', url_base + '/html/exercise_page.html');
-			        }
+			        },
+
+					error: function (xhr, ajaxOptions, thrownError) {
+	        	        console.log(xhr.status);
+	        			console.log(thrownError);
+				        
+				      }
 
 			    });
+
 
 	});
 

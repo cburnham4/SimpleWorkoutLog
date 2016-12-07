@@ -20,7 +20,10 @@ $(document).ready(function () {
 	$('#addExerciseForm').on('submit', addExercise);
 
 
-
+	for(var i =0 ; i < muscles.length; i++){
+		$("select").append("<option>"+muscles[i].name+"</option>");
+	}
+	
 
 
 	/* Get exercises */

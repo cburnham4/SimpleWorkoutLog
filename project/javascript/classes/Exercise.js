@@ -7,7 +7,7 @@ var Exercise  = function(exercise_json){
 Exercise.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
 
-    var tddiv = $("<td>'+this.name+'</td>");
+    var tddiv = $("<td>"+this.name+"</td>");
     tddiv.addClass('openExercise');
 
     var tddiv2 = $('<td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>');

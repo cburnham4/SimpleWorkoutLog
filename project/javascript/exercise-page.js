@@ -64,13 +64,24 @@ $(document).ready(function () {
 
 	$('#routinenav').on('click', load_routines);
 
-	$('#exercisediv').on('dblclick',
-		   'div.todo',
+	$('#exercisediv').on('click','td.openExercise',
 		   null,
 		   function (e) {
-		       var t = $(this).data('todo');
-		       $(this).replaceWith(t.makeEditDiv());
+		       var exercise = $(this).parent().data('exercise');
+		       console.log(exercise.name);
+		       /* Run ajax call to get the exercise stuff */
+		       $('h1').text(Exercise.name);
 		   });
+
+	$('#exercisediv').on('click','td.deleteExercise',
+	   null,
+	   function (e) {
+	       var exercise = $(this).parent().data('exercise');
+	       console.log("Delete" + exercise.name);
+	       /* Run ajax call to get the exercise stuff */
+	       $('h1').text(Exercise.name);
+	       delete_exercise(Exercise.eid);
+	   });
 
 
 });
@@ -107,10 +118,7 @@ var load_muscles = function(){
 	for (var i=0; i<muscles.length; i++) {
 		var m = muscles[i];
 		$("#exercisediv").append(m.makeDiv());
-	}
-        
-
-}
+	}}
 
 var load_muscles_initial = function(){
 	var url_get = url_base + muscle_api;
@@ -127,7 +135,6 @@ var load_muscles_initial = function(){
    			}
         }
  });}
-
 
 var load_routines = function(){
 
@@ -153,9 +160,17 @@ var load_routines = function(){
 	    });
 }
 
+/* Load in the individual exercise */
+var load_exercise = function(){
+
+}
+
+var delete_exercise = function(eid){
+
+}
 var clear_table = function (name) {
 	$("#exercisediv").empty();
-	$("#exercisediv").append("<tr><th>"+name+"</th></tr>");
+	$("#exercisediv").append("<tr><th>"+name+"</th><th>Delete</th></tr>");
 
 }
 

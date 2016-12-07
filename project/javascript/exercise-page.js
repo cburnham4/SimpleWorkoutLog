@@ -10,44 +10,15 @@ var userId;
 var muscles =[];
 
 $(document).ready(function () {
-
-
-
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	
 
-	// $.each(muscles, function(i, val) {
-	//     $("#muscles_select").append("<option>"+val.name+"</option>");
-	// });
-	console.log(muscles.length);
-
-
+	/* Get the stored user id */
 	userId = localStorage.getItem("usernameID");
 
 
-	$('#addExerciseForm').on('submit',
-	function(e) {
-		e.preventDefault();
-		var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
-		console.log(params);
-		//var data = params.serialize();
-	    $.ajax(url_base + exercise_api,
-		  {type: "POST",
-			  dataType: "json",
-			  data: params,
-			  	success: function(data) {
-				  	console.log(data);
-				  	var t = new Exercise(data);
-			   		$("#maintable").append(t.makeDiv());
+	$('#addExerciseForm').on('submit', addExercise);
 
-				},
-				error: function (xhr, ajaxOptions, thrownError) {
-			        alert(xhr.status);
-			        alert(thrownError);
-			      }
-
-			});
-	})
 
 
 
@@ -116,92 +87,30 @@ $(document).ready(function () {
 
 });
 
-var load_exercises = function(){
-	clear_table('Exercise');
-	$('h1').text('Exercises');
-
-	$('#exercisenav').addClass('active');
-	$('#musclenav').removeClass('active');
-	$('#routinenav').removeClass('active');
-
-	var params = "?userId=" + userId;
-
-	var url_get = url_base + exercise_api + params;
-	console.log(url_get);
-
-	$.ajax({
-	        url: url_get,
-	        type: 'GET',
-	        success: function(res) {
-	        	console.log(res);
-
-	        	for (var i=0; i<res.length; i++) {
-	   				var t = new Exercise(res[i]);
-	   				$("#maintable").append(t.makeDiv());
-       			}
-
-	        }
-
-	    });}
-
-var load_muscles = function(){
-	clear_table('Muscle');
-	$("h1").text("Muscles");
-
-	$('#exercisenav').removeClass('active');
-	$('#musclenav').addClass('active');
-	$('#routinenav').removeClass('active');
+var addExercise = 	function(e) {
+	e.preventDefault();
+	var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
+	console.log(params);
 	
+    $.ajax(url_base + exercise_api,
+	  {type: "POST",
+		  dataType: "json",
+		  data: params,
+		  	success: function(data) {
+			  	console.log(data);
+			  	var t = new Exercise(data);
+		   		$("#maintable").append(t.makeDiv());
 
-	for (var i=0; i<muscles.length; i++) {
-		var m = muscles[i];
-		$("#maintable").append(m.makeDiv());
-	}}
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+		        alert(xhr.status);
+		        alert(thrownError);
+		      }
 
-var load_muscles_initial = function(){
-	var url_get = url_base + muscle_api;
-	console.log(url_get);
-
-	$.ajax({
-        url: url_get,
-        type: 'GET',
-        success: function(res) {
-        	console.log(res);
-        	for (var i=0; i<res.length; i++) {
-   				var m = new Muscle(res[i]);
-   				muscles.push(m);
-   			}
-        }
- });}
-
-var load_routines = function(){
-
-	clear_table('Routine');
-	$('h1').text('Routines');
-
-	$('#exercisenav').removeClass('active');
-	$('#musclenav').removeClass('active');
-	$('#routinenav').addClass('active');
-
-	var params = "?userId=" + userId;
-	var url_get = url_base + routine_api + params;
-	console.log(url_get);
-
-	$.ajax({
-	        url: url_get,
-	        type: 'GET',
-	        success: function(res) {
-	        	console.log(res);
-
-	        	for (var i=0; i<res.length; i++) {
-	   				var r = new Routine(res[i]);
-	   				$("#maintable").append(r.makeDiv());
-       			}
-
-	        }
-
-	    });
+		});
 }
+
+
 
 var did;
 /* Load in the individual exercise */

@@ -12,6 +12,13 @@ var muscles =[];
 $(document).ready(function () {
 
 
+	// $.getJSON("/Admin/GetFolderList/", function(result) {
+	// var options = $("#options");
+	// $.each(result, function() {
+	//     options.append($("<option />").val(this.ImageFolderID).text(this.Name));
+	// 	});
+	// });
+
 	userId = localStorage.getItem("usernameID");
 
 

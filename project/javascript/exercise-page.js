@@ -11,6 +11,8 @@ var muscles =[];
 
 $(document).ready(function () {
 
+	$("#maindiv").empty();
+	$("#maindiv").load("content.html");
 
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	

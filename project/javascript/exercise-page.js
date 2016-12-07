@@ -20,9 +20,7 @@ $(document).ready(function () {
 	$('#addExerciseForm').on('submit', addExercise);
 
 
-	for(var i =0 ; i < muscles.length; i++){
-		$("select").append("<option>"+muscles[i].name+"</option>");
-	}
+
 	
 
 
@@ -90,7 +88,10 @@ $(document).ready(function () {
 
 var addExercise = 	function(e) {
 	e.preventDefault();
-	var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
+
+	var muscle = $('#muscle-select').find(':selected').data('muscle');
+
+	var params = $(this).serialize() + "&userId=" + userId + "&muscleId=" +muscle.mid; 
 	console.log(params);
 	
     $.ajax(url_base + exercise_api,

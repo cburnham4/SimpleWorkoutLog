@@ -43,7 +43,9 @@ var load_muscles = function(){
 
 var load_muscles_initial = function(){
 	var url_get = url_base + muscle_api;
-	muscles.push(new Muscle({"mid":0 , "name": "None"}));
+	var m = new Muscle({"mid":0 , "name": "None"});
+
+	$("#muscle-select").append(m.makeOption());
 
 	$.ajax({
         url: url_get,

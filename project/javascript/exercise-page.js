@@ -12,12 +12,12 @@ var muscles =[];
 $(document).ready(function () {
 
 
-	// $.getJSON("/Admin/GetFolderList/", function(result) {
-	// var options = $("#options");
-	// $.each(result, function() {
-	//     options.append($("<option />").val(this.ImageFolderID).text(this.Name));
-	// 	});
-	// });
+	/* Get muscles into the muscle array */
+	load_muscles_initial();	
+
+	$.each(muscles, function(i, val) {
+	    $("#muscles").append("<option>"+val+"</option");
+	});
 
 	userId = localStorage.getItem("usernameID");
 
@@ -49,8 +49,7 @@ $(document).ready(function () {
 	/* Get exercise ID */
 	load_exercises();
 
-	/* Get muscles into the muscle array */
-	load_muscles_initial();
+
 
 
 

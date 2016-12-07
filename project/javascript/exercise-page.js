@@ -52,12 +52,8 @@ $(document).ready(function () {
 
 
 
-	/* Get exercise ID */
+	/* Get exercises */
 	load_exercises();
-
-
-
-
 
 	$('#exercisenav').on('click', load_exercises);
 		
@@ -207,9 +203,43 @@ var load_routines = function(){
 	    });
 }
 
+var did;
 /* Load in the individual exercise */
-var load_exercise = function(){
+var load_dayId= function(eid){
+	var params = "?userId=" + eid + "&all=0";
+	var url_get = url_base + day_api + params;
+	console.log(url_get);
 
+	$.ajax({
+	        url: url_get,
+	        type: 'GET',
+	        success: function(res) {
+	        	console.log(res);
+	        	did = res.did;
+	        }
+
+	    });
+}
+
+var sets= [];
+var get_sets_from_day = function(did){
+	var params = "?did=" + did;
+	var url_get = url_base + sets_api + params;
+	console.log(url_get);
+	/* Empty sets list */
+	sets = [];
+
+	$.ajax({
+        url: url_get,
+        type: 'GET',
+        success: function(res) {
+        	for (var i=0; i<res.length; i++) {
+   				var s = new Set(res[i]);
+   				/* TODO: Add to list */
+   			}
+        }
+
+    });
 }
 
 var delete_exercise = function(eid, row){

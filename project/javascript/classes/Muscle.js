@@ -12,3 +12,13 @@ Muscle.prototype.makeDiv = function() {
 
     return cdiv;
 };
+
+
+Muscle.prototype.makeOption = function() {
+    var option = $("<option>"+this.name+"</option>");
+
+    option.data('muscle', this);
+
+    return option;
+};
+

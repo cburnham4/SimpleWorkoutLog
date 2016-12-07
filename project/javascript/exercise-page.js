@@ -15,9 +15,11 @@ $(document).ready(function () {
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	
 
-	$.each(muscles, function(i, val) {
-	    $("#muscles").append("<option>"+val+"</option");
-	});
+	// $.each(muscles, function(i, val) {
+	//     $("#muscles_select").append("<option>"+val.name+"</option>");
+	// });
+	console.log(muscles.length);
+
 
 	userId = localStorage.getItem("usernameID");
 
@@ -26,6 +28,7 @@ $(document).ready(function () {
 	function(e) {
 		e.preventDefault();
 		var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
+		console.log(params);
 		//var data = params.serialize();
 	    $.ajax(url_base + exercise_api,
 		  {type: "POST",
@@ -46,6 +49,8 @@ $(document).ready(function () {
 	})
 
 
+
+
 	/* Get exercise ID */
 	load_exercises();
 
@@ -58,6 +63,14 @@ $(document).ready(function () {
 	$('#musclenav').on('click', load_muscles);
 
 	$('#routinenav').on('click', load_routines);
+
+	$('#exercisediv').on('dblclick',
+		   'div.todo',
+		   null,
+		   function (e) {
+		       var t = $(this).data('todo');
+		       $(this).replaceWith(t.makeEditDiv());
+		   });
 
 
 });

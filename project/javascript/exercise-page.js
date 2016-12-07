@@ -8,7 +8,6 @@ var sets_api = "/backend/sets-api.php";
 
 var userId; 
 var muscles =[];
-var fMuscles = [Shoulders, chest, biceps];
 
 $(document).ready(function () {
 
@@ -136,25 +135,7 @@ var load_dayId= function(eid, callback){
 }
 
 var sets= [];
-var get_sets_from_day = function(did){
-	var params = "?did=" + did;
-	var url_get = url_base + sets_api + params;
-	console.log(url_get);
-	/* Empty sets list */
-	sets = [];
 
-	$.ajax({
-        url: url_get,
-        type: 'GET',
-        success: function(res) {
-        	for (var i=0; i<res.length; i++) {
-   				var s = new Set(res[i]);
-   				/* TODO: Add to list */
-   			}
-        }
-
-    });
-}
 
 var delete_exercise = function(eid, row){
 	console.log("Delete exercise");

@@ -5,12 +5,17 @@ var Routine  = function(routine_json){
 
 Routine.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
-    cdiv.addClass('routine');
 
-    cdiv.append('<td>'+this.name+'</td>');
+    var tddiv = $("<td>"+this.name+"</td>");
+    tddiv.addClass('openRoutine');
 
-    cdiv.data('exercise', this);
+    var tddiv2 = $('<td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>');
+    tddiv2.addClass('deleteRoutine');
+
+    cdiv.append(tddiv);
+    cdiv.append(tddiv2);
+    
+    cdiv.data('routine', this);
 
     return cdiv;
 };
-

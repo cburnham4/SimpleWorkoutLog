@@ -10,6 +10,7 @@ var load_exercise_page = function(exercise){
 		console.log("load");
 
 		 $('#submitSets').on('click', function(e) {
+	 			e.preventDefault();
 				var reps = $("#reps").val();
 				var weight = $("#weight").val();
 
@@ -51,7 +52,8 @@ var get_sets_from_day = function(did){
         type: 'GET',
         success: function(res) {
         	for (var i=0; i<res.length; i++) {
-   				var s = new Set(res[i]);
+   				var set = new Set(res[i]);
+   				$('#completed-sets-table').append(set.makeDiv());
    				/* TODO: Add to list */
    			}
         }

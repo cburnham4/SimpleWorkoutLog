@@ -3,12 +3,12 @@ var Set = function(set_json){
 	this.reps = set_json.reps;
 	this.weight = set_json.weight;
 	this.did = set_json.did;
-};
+}
 
 Set.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
 
-    var tddiv = $("<td>reps: "+this.reps+" | weight: " + this.weight"</td>");
+    var tddiv = $('<td>reps: ' + this.reps + ' | weight: ' + this.weight +'</td>');
 
     var tddiv2 = $('<td><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td>');
     tddiv2.addClass('deleteSet');
@@ -19,4 +19,4 @@ Set.prototype.makeDiv = function() {
     cdiv.data('set', this);
 
     return cdiv;
-};
+}

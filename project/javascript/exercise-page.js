@@ -274,8 +274,8 @@ var delete_routine = function(rid, row){
 		  	
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-	        alert(xhr.status);
-	        alert(thrownError);
+	        console.log(xhr.status);
+	        console.log(thrownError);
 	      }
 
 	});

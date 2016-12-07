@@ -30,6 +30,7 @@ $(document).ready(function () {
 
 	$('#login_form').on('submit',
 		function(e) {
+			e.preventDefault();
 			var params = $(this).serialize();
 
 			var url_get = url_base + "/backend/users.php?" + params;
@@ -47,11 +48,13 @@ $(document).ready(function () {
 			        },
 
 					error: function (xhr, ajaxOptions, thrownError) {
-				        alert("User Not Found");
+	        	        console.log(xhr.status);
+	        			console.log(thrownError);
 				        
 				      }
 
 			    });
+
 
 	});
 

@@ -28,7 +28,6 @@ $(document).ready(function () {
 				  	console.log(data);
 				  	var t = new Exercise(data);
 			   		$("#exercisediv").append(t.makeDiv());
-			   		
 
 				},
 				error: function (xhr, ajaxOptions, thrownError) {
@@ -58,29 +57,31 @@ $(document).ready(function () {
 });
 
 var load_exercises = function(){
-			$('h1').text('Exercises');
+	clear_table('Exercise');
+	$('h1').text('Exercises');
 
-			var params = "?userId=" + userId;
+	var params = "?userId=" + userId;
 
-			var url_get = url_base + exercise_api + params;
-			console.log(url_get);
+	var url_get = url_base + exercise_api + params;
+	console.log(url_get);
 
-			$.ajax({
-			        url: url_get,
-			        type: 'GET',
-			        success: function(res) {
-			        	console.log(res);
+	$.ajax({
+	        url: url_get,
+	        type: 'GET',
+	        success: function(res) {
+	        	console.log(res);
 
-			        	for (var i=0; i<res.length; i++) {
-			   				var t = new Exercise(res[i]);
-			   				$("#exercisediv").append(t.makeDiv());
-		       			}
+	        	for (var i=0; i<res.length; i++) {
+	   				var t = new Exercise(res[i]);
+	   				$("#exercisediv").append(t.makeDiv());
+       			}
 
-			        }
+	        }
 
-			    });}
+	    });}
 
 var load_muscles = function(){
+	clear_table('Muscle');
 	$("h1").text("Muscles");
 	var url_get = url_base + muscle_api;
 	console.log(url_get);
@@ -98,6 +99,8 @@ var load_muscles = function(){
     });}
 
 var load_routines = function(){
+
+	clear_table('Routine');
 	$('h1').text('Routines');
 
 	var params = "?userId=" + userId;
@@ -119,9 +122,9 @@ var load_routines = function(){
 	    });
 }
 
-var clear_table = function () {
+var clear_table = function (name) {
 	$("#exercisediv").empty();
-	$("#exercisediv").append("<tr><th>Exercise</th></tr>");
+	$("#exercisediv").append("<tr><th>"+name+"</th></tr>");
 
 }
 

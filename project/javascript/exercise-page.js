@@ -8,6 +8,7 @@ var sets_api = "/backend/sets-api.php";
 
 var userId; 
 var muscles =[];
+var fMuscles = [Shoulders, chest, biceps];
 
 $(document).ready(function () {
 
@@ -24,10 +25,6 @@ $(document).ready(function () {
 
 
 	$('#addExerciseForm').on('submit', addExercise);
-
-
-
-	
 
 
 	/* Get exercises */

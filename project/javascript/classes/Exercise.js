@@ -6,6 +6,7 @@ var Exercise  = function(exercise_json){
 
 Exercise.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
+    cdiv.addClass('exercise');
 
     cdiv.append('<td>'+this.name+'</td>');
 

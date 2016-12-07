@@ -8,6 +8,7 @@ var sets_api = "/backend/sets-api.php";
 
 var userId; 
 var muscles =[];
+var fMuscles = [Shoulders, chest, biceps];
 
 $(document).ready(function () {
 
@@ -15,9 +16,14 @@ $(document).ready(function () {
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	
 
-	$.each(muscles, function(i, val) {
-	    $("#muscles").append("<option>"+val+"</option");
-	});
+	// for (var i = 0; i < fMuscles.length; i++)
+	// {
+	// 	$("#muscles").append("<option>"+fMuscles[i].name+"</option>");
+	// }
+
+	// // $.each(fMuscles, function(i, val) {
+	// //     $("#muscles").append("<option>"+val+"</option");
+	// // });
 
 	userId = localStorage.getItem("usernameID");
 
@@ -26,7 +32,6 @@ $(document).ready(function () {
 	function(e) {
 		e.preventDefault();
 		var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
-		//var data = params.serialize();
 	    $.ajax(url_base + exercise_api,
 		  {type: "POST",
 			  dataType: "json",

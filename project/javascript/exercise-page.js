@@ -12,9 +12,6 @@ var fMuscles = [Shoulders, chest, biceps];
 
 $(document).ready(function () {
 	/* Get muscles into the muscle array */
-<<<<<<< HEAD
-	load_muscles_initial();		
-=======
 	load_muscles_initial();	
 
 	/* Get the stored user id */
@@ -27,9 +24,6 @@ $(document).ready(function () {
 	for(var i =0 ; i < muscles.length; i++){
 		$("select").append("<option>"+muscles[i].name+"</option>");
 	}
-	
-
->>>>>>> d49153c68ce83883c16903b8256d3fafeddbfab6
 
 	/* Get exercises */
 	load_exercises();

@@ -70,7 +70,7 @@ $(document).ready(function () {
 		       var exercise = $(this).parent().data('exercise');
 		       console.log(exercise.name);
 		       /* Run ajax call to get the exercise stuff */
-		       $('h1').text(Exercise.name);
+		       $('h1').text(exercise.name);
 		   });
 
 	$('#exercisediv').on('click','td.deleteExercise',
@@ -79,8 +79,8 @@ $(document).ready(function () {
 	       var exercise = $(this).parent().data('exercise');
 	       console.log("Delete" + exercise.name);
 	       /* Run ajax call to get the exercise stuff */
-	       $('h1').text(Exercise.name);
-	       delete_exercise(Exercise.eid);
+	    
+	       delete_exercise(exercise.eid, $(this).parent());
 	   });
 
 
@@ -165,12 +165,29 @@ var load_exercise = function(){
 
 }
 
-var delete_exercise = function(eid){
+var delete_exercise = function(eid, row){
+	console.log("Delete exercise");
+	var params = "eid="+eid;
+    $.ajax(url_base + exercise_api,
+    {type: "POST",
+	  dataType: "json",
+	  data: params,
+	  	success: function(data) {
+	  		alert("success");
+		  	console.log(data);
+		  	
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+	        alert(xhr.status);
+	        alert(thrownError);
+	      }
 
+	});
+	row.remove();
 }
 var clear_table = function (name) {
 	$("#exercisediv").empty();
-	$("#exercisediv").append("<tr><th>"+name+"</th><th>Delete</th></tr>");
+	$("#exercisediv").append("<tr><th>"+name+"</th><th></th></tr>");
 
 }
 

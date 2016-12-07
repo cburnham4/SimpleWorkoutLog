@@ -50,9 +50,7 @@ $(document).ready(function () {
 	       /* Run ajax call to get the exercise stuff */
 
      	    delete_exercise(exercise.eid, $(this).parent());
-	       
-	    
-
+	   
 	   });
 
 

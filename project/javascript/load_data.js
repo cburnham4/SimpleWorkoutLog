@@ -12,13 +12,11 @@ var load_exercises = function(){
 	var params = "?userId=" + userId;
 
 	var url_get = url_base + exercise_api + params;
-	console.log(url_get);
 
 	$.ajax({
 	        url: url_get,
 	        type: 'GET',
 	        success: function(res) {
-	        	console.log(res);
 
 	        	for (var i=0; i<res.length; i++) {
 	   				var t = new Exercise(res[i]);
@@ -45,13 +43,11 @@ var load_muscles = function(){
 
 var load_muscles_initial = function(){
 	var url_get = url_base + muscle_api;
-	console.log(url_get);
 
 	$.ajax({
         url: url_get,
         type: 'GET',
         success: function(res) {
-        	console.log(res);
         	for (var i=0; i<res.length; i++) {
    				var m = new Muscle(res[i]);
    				muscles.push(m);
@@ -70,13 +66,10 @@ var load_routines = function(){
 
 	var params = "?userId=" + userId;
 	var url_get = url_base + routine_api + params;
-	console.log(url_get);
-
 	$.ajax({
 	        url: url_get,
 	        type: 'GET',
 	        success: function(res) {
-	        	console.log(res);
 
 	        	for (var i=0; i<res.length; i++) {
 	   				var r = new Routine(res[i]);

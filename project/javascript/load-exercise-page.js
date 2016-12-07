@@ -7,7 +7,23 @@ var load_exercise_page = function(exercise){
 
 		get_sets_from_day(did);
 
-		console.log("load");
+		$('#current-workout-tab').on('click', function(e){
+			$('#add-set-div').empty();
+
+			$('#past-sets-tab').removeClass('active');
+			$(this).addClass('active');
+			console.log("past sets clicked ");
+
+		}); 
+
+		$('#past-sets-tab').on('click', function(e){
+			$('#add-set-div').empty();
+
+			$('#current-workout-tab').removeClass('active');
+			$(this).addClass('active');
+			console.log("past sets clicked ");
+
+		}); /* End past tab clicked */
 
 		 $('#submitSets').on('click', function(e) {
 	 			e.preventDefault();
@@ -54,7 +70,6 @@ var get_sets_from_day = function(did){
         	for (var i=0; i<res.length; i++) {
    				var set = new Set(res[i]);
    				$('#completed-sets-table').append(set.makeDiv());
-   				/* TODO: Add to list */
    			}
         }
 

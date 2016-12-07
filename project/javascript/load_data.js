@@ -43,6 +43,7 @@ var load_muscles = function(){
 
 var load_muscles_initial = function(){
 	var url_get = url_base + muscle_api;
+	muscles.push(new Muscle({"mid":0 , "name": "None"}));
 
 	$.ajax({
         url: url_get,
@@ -51,9 +52,11 @@ var load_muscles_initial = function(){
         	for (var i=0; i<res.length; i++) {
    				var m = new Muscle(res[i]);
    				muscles.push(m);
+   				$("#muscle-select").append(m.makeOption());
    			}
         }
  });}
+
 
 var load_routines = function(){
 

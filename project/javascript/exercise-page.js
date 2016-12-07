@@ -14,52 +14,6 @@ $(document).ready(function () {
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	
 
-<<<<<<< HEAD
-	// for (var i = 0; i < fMuscles.length; i++)
-	// {
-	// 	$("#muscles").append("<option>"+fMuscles[i].name+"</option>");
-	// }
-
-	// // $.each(fMuscles, function(i, val) {
-	// //     $("#muscles").append("<option>"+val+"</option");
-	// // });
-
-	userId = localStorage.getItem("usernameID");
-
-
-	$('#addExerciseForm').on('submit',
-	function(e) {
-		e.preventDefault();
-		var params = $(this).serialize() + "&userId=" + userId + "&muscleId=0"; 
-	    $.ajax(url_base + exercise_api,
-		  {type: "POST",
-			  dataType: "json",
-			  data: params,
-			  	success: function(data) {
-				  	console.log(data);
-				  	var t = new Exercise(data);
-			   		$("#exercisediv").append(t.makeDiv());
-
-				},
-				error: function (xhr, ajaxOptions, thrownError) {
-			        alert(xhr.status);
-			        alert(thrownError);
-			      }
-
-			});
-	})
-=======
-	/* Get the stored user id */
-	userId = localStorage.getItem("usernameID");
-
-
-	$('#addExerciseForm').on('submit', addExercise);
->>>>>>> 5ba3049c2ed7d7e8610fef6c52afbff031468364
-
-
-
-
-
 	/* Get exercises */
 	load_exercises();
 

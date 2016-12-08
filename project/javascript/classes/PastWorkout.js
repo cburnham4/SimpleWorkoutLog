@@ -13,12 +13,13 @@ var PastWorkout = function(set_json){
     var year = date.getFullYear();
     var fullDate = (monthNames[monthIndex] + ' ' + day + ' ' + year);
 
-    var sets = [];
+    var setst = [];
+    console.log("len : "+ set_json.past_sets.length);
     for(var i = 0; i < set_json.past_sets.length; i++){
-        sets[i] = new Set(set_json.past_sets[i]);
+        setst[i] = new Set(set_json.past_sets[i]);
     }
 
-    this.sets = sets;
+    this.sets = setst;
     this.date = fullDate;
 
 }
@@ -27,9 +28,10 @@ PastWorkout.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
     var td = $("<td></td>");
 
-    for (var i = 0; i < sets.length; i++) {
+    console.log(this.sets.length);
+    for (var i = 0; i < this.sets.length; i++) {
         //var tddiv = $('<td>reps: ' + sets.reps + ' | weight: ' + this.weight +'</td>');
-        var tddiv = $('reps: ' + sets[i].reps + '| weight: ' + sets[i].weight + '<br>');
+        var tddiv = 'reps: ' + this.sets[i].reps + ' | weight: ' + this.sets[i].weight + '<br>';
 
         td.append(tddiv);
     }

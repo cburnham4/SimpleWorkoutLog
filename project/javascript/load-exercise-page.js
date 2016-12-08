@@ -19,10 +19,11 @@ var load_exercise_page = function(exercise){
 
 		$('#past-sets-tab').on('click', function(e){
 			e.preventDefault();
+			console.log("clicked");
 			$('#add-set-div').empty();
 
 			/* REMOVE */
-			$('#completed-sets-table').empty;
+			$('#completed-sets-table').empty();
 
 			$('#current-workout-tab').removeClass('active');
 			$(this).addClass('active');
@@ -34,6 +35,7 @@ var load_exercise_page = function(exercise){
 			$.ajax({
 		        url: url_get,
 		        type: 'GET',
+		        dataType: 'json',
 		        success: function(res) {
 		        	console.log(res);
 		        	for(var i = 0; i < res.length; i++){

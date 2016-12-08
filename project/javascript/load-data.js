@@ -6,9 +6,8 @@ var load_exercises = function(){
 		clear_table('Exercise');
 		$('h1').text('Exercises');
 
-		$(document).off("click", "#past-sets-tab");
-		$(document).off("click", '#current-workout-tab');
-		$(document).off("click", '#submitSets');
+		remove_add_exercise_clicks();	
+
 
 		$('#exercisenav').addClass('active');
 		$('#musclenav').removeClass('active');
@@ -42,6 +41,8 @@ var load_muscles = function(){
 	load_main_table(function(){
 		clear_table('Muscle');
 		$("h1").text("Muscles");
+
+		remove_add_exercise_clicks();	
 
 		$('#exercisenav').removeClass('active');
 		$('#musclenav').addClass('active');
@@ -83,6 +84,8 @@ var load_routines = function(){
 
 	clear_table('Routine');
 	$('h1').text('Routines');
+
+	remove_add_exercise_clicks();	
 
 	$('#exercisenav').removeClass('active');
 	$('#musclenav').removeClass('active');

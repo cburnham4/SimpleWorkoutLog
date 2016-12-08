@@ -95,3 +95,9 @@ var clear_sets_table = function(){
 	$("#completed-sets-table tbody").remove();
 	$("#completed-sets-table").append("<tr><th>Completed Sets</th></tr>");
 }
+
+var remove_add_exercise_clicks = function(){
+	$(document).off("click", "#past-sets-tab");
+	$(document).off("click", '#current-workout-tab');
+	$(document).off("click", '#submitSets');
+}

@@ -22,7 +22,7 @@ $(document).ready(function () {
 	/* Get the stored user id */
 	userId = localStorage.getItem("usernameID");
 
-
+	/* Add Exercise button clicked */
 	$('#addExerciseForm').on('submit', addExercise);
 
 

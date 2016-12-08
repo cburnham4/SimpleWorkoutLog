@@ -10,9 +10,7 @@ var userId;
 var muscles =[];
 
 $(document).ready(function () {
-
-	$("#maindiv").empty();
-	$("#maindiv").load("../html/table-content.html");
+	load_main_table();
 
 	$('#home').on('click', function(e) {
 		location.reload();
@@ -37,6 +35,7 @@ $(document).ready(function () {
 
 	$('#routinenav').on('click', load_routines);
 
+	/* Click Exercise */
 	$('#maindiv').on('click','td.openExercise',
 		   null,
 		   function (e) {
@@ -88,6 +87,11 @@ $(document).ready(function () {
 
 
 });
+
+var load_main_table = function(callback){
+	$("#maindiv").empty();
+	$("#maindiv").load("../html/table-content.html", callback);
+}
 
 var addExercise = 	function(e) {
 	e.preventDefault();

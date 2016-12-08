@@ -6,7 +6,7 @@ var monthNames = [
 ];  
 
 var PastWorkout = function(set_json){
-	this.did = set_json.did;
+	 this.did = set_json.did;
     this.date = new Date(set_json.date);
     var day = date.getDate();
     var monthIndex = date.getMonth();

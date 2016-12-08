@@ -22,6 +22,22 @@ var load_exercise_page = function(exercise){
 			$('#current-workout-tab').removeClass('active');
 			$(this).addClass('active');
 			console.log("past sets clicked ");
+			var params = "?eid="+exercise.eid+"&all=1";
+			var url_get = url_base + day_api + params;
+
+			console.log(url_get);
+			$.ajax({
+		        url: url_get,
+		        type: 'GET',
+		        success: function(res) {
+		        	console.log(res);
+		        	for(var i = 0; i < res.length; i++){
+		        		var past_workout = new PastWorkout(res[i]);
+		        		console.log(past_workout.date);
+		        	}
+		        }
+
+		    });
 
 		}); /* End past tab clicked */
 
@@ -31,7 +47,6 @@ var load_exercise_page = function(exercise){
 				var weight = $("#weight").val();
 
 				var params = "reps=" +reps +"&weight=" +weight +"&did=" +did;
-				console.log(params);
 
 				$.ajax(url_base + sets_api,
 				    {type: "POST",

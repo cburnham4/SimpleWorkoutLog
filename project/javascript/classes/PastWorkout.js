@@ -6,8 +6,8 @@ var monthNames = [
 ];  
 
 var PastWorkout = function(set_json){
-	 this.did = set_json.did;
-    this.date = new Date(set_json.date);
+	  this.did = set_json.did;
+    var date = new Date(set_json.date);
     var day = date.getDate();
     var monthIndex = date.getMonth();
     var year = date.getFullYear();
@@ -17,6 +17,9 @@ var PastWorkout = function(set_json){
     for(var i = 0; i < set_json.past_sets.length; i++){
         sets[i] = new Set(set_json.past_sets[i]);
     }
+
+    this.sets = sets;
+    this.date = fullDate;
 
 }
 

@@ -8,6 +8,7 @@ var load_exercise_page = function(exercise){
 		get_sets_from_day(did);
 
 		$('#current-workout-tab').on('click', function(e){
+			e.preventDefault();
 			$('#add-set-div').empty();
 
 			$('#past-sets-tab').removeClass('active');
@@ -17,7 +18,11 @@ var load_exercise_page = function(exercise){
 		}); 
 
 		$('#past-sets-tab').on('click', function(e){
+			e.preventDefault();
 			$('#add-set-div').empty();
+
+			/* REMOVE */
+			$('#completed-sets-table').empty;
 
 			$('#current-workout-tab').removeClass('active');
 			$(this).addClass('active');
@@ -34,6 +39,7 @@ var load_exercise_page = function(exercise){
 		        	for(var i = 0; i < res.length; i++){
 		        		var past_workout = new PastWorkout(res[i]);
 		        		console.log(past_workout.date);
+		        		$('#completed-sets-table').append(past_workout.makeDiv());
 		        	}
 		        }
 

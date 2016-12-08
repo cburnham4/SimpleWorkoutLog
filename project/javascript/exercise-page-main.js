@@ -119,6 +119,31 @@ var addExercise = 	function(e) {
 		});
 }
 
+//add routine
+var addRoutine = 	function(e) {
+	e.preventDefault();
+
+	var params = $(this).serialize() + "&userId=" + userId; 
+	console.log(params);
+	
+    $.ajax(url_base + routine_api,
+	  {type: "POST",
+		  dataType: "json",
+		  data: params,
+		  	success: function(data) {
+			  	console.log(data);
+			  	var r = new Routine(data);
+		   		$("#maintable").append(r.makeDiv());
+
+			},
+			error: function (xhr, ajaxOptions, thrownError) {
+		        alert(xhr.status);
+		        alert(thrownError);
+		      }
+
+		});
+}
+
 
 
 var did;

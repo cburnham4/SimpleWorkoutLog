@@ -14,7 +14,9 @@ $(document).ready(function () {
 	$("#maindiv").empty();
 	$("#maindiv").load("../html/table-content.html");
 
-
+	$('#home').on('click', function(e) {
+		location.reload();
+	})
 
 	/* Get muscles into the muscle array */
 	load_muscles_initial();	

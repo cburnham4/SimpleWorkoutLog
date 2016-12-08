@@ -82,7 +82,11 @@
 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addExerciseModal">Add Exercise</button>
 
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRoutineModal">Add Routine</button>
+
 			</div>
+
+			<!-- BEGIN ADD EXERCISE MODAL-->
 
 			<div class="modal fade" id="addExerciseModal" tabindex="-1" role="dialogue" aria-labelledby="exerciseModalLabel">
 				<div class="modal-dialogue" role="document">
@@ -109,7 +113,34 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>			<!-- END ADD EXERCISE MODAL-->
+
+			<!--BEGIN ADD ROUTINE MODAL-->
+
+			<div class="modal fade" id="addRoutineModal" tabindex="-1" role="dialogue" aria-labelledby="routineModalLabel">
+				<div class="modal-dialogue" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="routineModalLabel">New Routine</h4>
+						</div>
+						<div class="modal-body">
+							<form id="addRoutineForm">
+								<div class="form-group">
+									<label for="routineName" class="control-label">Routine:</label>
+									<input type="text" name="name" class="form-control" id="routine-name">
+									<input type="submit" name="addRoutine" class="btn btn-primary" value="Add Routine">
+									<br>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>			<!-- END ADD ROUTINE MODAL-->
+
 
 		</div>
 

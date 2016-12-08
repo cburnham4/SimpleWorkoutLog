@@ -191,3 +191,21 @@ var clear_table = function (name) {
 
 }
 
+var disable_add_exercise = function(){
+	$('#btnAddExercise').css('display', 'none');
+}
+
+var disable_add_routine = function(){
+	$('#btnAddRoutine').css('display', 'none');
+}
+
+
+var enable_add_exercise = function(){
+	$('#btnAddExercise').css('display', 'block');
+}
+
+var enable_add_routine = function(){
+	$('#btnAddRoutine').css('display', 'block');
+}
+
+

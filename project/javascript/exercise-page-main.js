@@ -61,7 +61,7 @@ $(document).ready(function () {
 
 
 
-		$('#maintable').on('click','td.openRoutine',
+		$('#maindiv').on('click','td.openRoutine',
 		   null,
 		   function (e) {
 		       var routine = $(this).parent().data('routine');
@@ -71,7 +71,7 @@ $(document).ready(function () {
 		       /* Load in the new page */
 		   });
 
-	$('#maintable').on('click','td.deleteRoutine',
+	$('#maindiv').on('click','td.deleteRoutine',
 	   null,
 	   function (e) {
 	       var routine= $(this).parent().data('routine');
@@ -189,7 +189,7 @@ var delete_exercise = function(eid, row){
 }
 
 var delete_routine = function(rid, row){
-	console.log("Delete exercise");
+	console.log("Delete routine");
 	var params = "rid="+rid;
     $.ajax(url_base + routine_api,
     {type: "POST",

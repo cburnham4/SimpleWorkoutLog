@@ -61,17 +61,17 @@ $(document).ready(function () {
 
 
 
-		$('#maintable').on('click','td.openRoutine',
-		   null,
-		   function (e) {
-		       var routine = $(this).parent().data('routine');
-		       console.log(routine.name);
-		       $('h1').text(routine.name);
+	$('#maindiv').on('click','td.openRoutine',
+	   null,
+	   function (e) {
+	       var routine = $(this).parent().data('routine');
+	       console.log(routine.name);
+	       $('h1').text(routine.name);
 
-		       /* Load in the new page */
-		   });
+	       /* Load in the new page */
+	   });
 
-	$('#maintable').on('click','td.deleteRoutine',
+	$('#maindiv').on('click','td.deleteRoutine',
 	   null,
 	   function (e) {
 	       var routine= $(this).parent().data('routine');

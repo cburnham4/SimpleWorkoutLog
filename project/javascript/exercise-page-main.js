@@ -10,7 +10,7 @@ var userId;
 var muscles =[];
 
 $(document).ready(function () {
-	load_main_table();
+	console.log("page loaded");
 
 	$('#home').on('click', function(e) {
 		e.preventDefault();
@@ -86,6 +86,7 @@ $(document).ready(function () {
 	$('#maindiv').on('click','td.deleteRoutine',
 	   null,
 	   function (e) {
+	   	console.log("delete routine");
 	   	e.preventDefault();
 	       var routine= $(this).parent().data('routine');
 	       console.log("Delete" + routine.name);
@@ -99,20 +100,25 @@ $(document).ready(function () {
 	   null,
 	   function (e) {
 	   		e.preventDefault();
+	   		e.stopPropagation();
 	       	var muscle = $(this).data('muscle');
 	       	console.log(muscle.name);
 	      	$('h1').text(muscle.name);
 
 	       	/* Load in the new page */
-		   	$("#maindiv").empty();
-			$("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle, e));
-	   });
-
-
-
+		   	//$("#maindiv").empty(); 
+		    // $("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle, function(){
+		    // 	  $('#maindiv').append("<h1>hello</h1>");
+		    // 	  console.log("done");
+		    // }));
+			clear_table('Exercise');
+			get_exercises_by_muscle(muscle);
+	   }
+	);
 });
 
 var load_main_table = function(callback){
+	console.log("load main table");
 	$("#maindiv").empty();
 	$("#maindiv").load("../html/table-content.html", callback);
 }
@@ -170,6 +176,7 @@ var addRoutine = function(e) {
 
 
 
+
 var did;
 /* Load in the individual exercise */
 var load_dayId= function(eid, callback){
@@ -189,7 +196,6 @@ var load_dayId= function(eid, callback){
 	    });
 }
 
-var sets= [];
 
 
 var delete_exercise = function(eid, row){

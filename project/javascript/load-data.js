@@ -36,15 +36,12 @@ var load_exercises = function(e){
 		        }
 
 		    });
-
-
-
 		});
-
 }
 
 var load_muscles = function(e){
 	e.preventDefault();
+	e.stopPropagation();
 	load_main_table(function(){
 		disable_add_exercise();
 		disable_add_routine();	
@@ -69,24 +66,23 @@ var load_muscles = function(e){
 }
 
 var load_muscles_initial = function(){
-	load_main_table(function(){
-		var url_get = url_base + muscle_api;
-		var m = new Muscle({"mid":0 , "name": "None"});
+	var url_get = url_base + muscle_api;
+	var m = new Muscle({"mid":0 , "name": "None"});
 
-		$("#muscle-select").append(m.makeOption());
+	$("#muscle-select").append(m.makeOption());
 
-		$.ajax({
-	        url: url_get,
-	        type: 'GET',
-	        success: function(res) {
-	        	for (var i=0; i<res.length; i++) {
-	   				var m = new Muscle(res[i]);
-	   				muscles.push(m);
-	   				$("#muscle-select").append(m.makeOption());
-	   			}
-	        }
-	    });
-	});
+	$.ajax({
+        url: url_get,
+        type: 'GET',
+        success: function(res) {
+        	for (var i=0; i<res.length; i++) {
+   				var m = new Muscle(res[i]);
+   				muscles.push(m);
+   				$("#muscle-select").append(m.makeOption());
+   			}
+        }
+    });
+
 
 }
 

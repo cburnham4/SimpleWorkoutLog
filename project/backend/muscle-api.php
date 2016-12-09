@@ -8,14 +8,15 @@
   /* Check for GET request */
   if ($_SERVER['REQUEST_METHOD'] == "GET") {
 
-    if (isset($_REQUEST['userId'])) {
+    if (isset($_REQUEST['userId']) && isset($_REQUEST['mid'])) {
       $userId = trim($_REQUEST['userId']);
+      $mid = trim($_REQUEST['mid']);
 
-      /* If only userid specified then get all exercises based on user */
       header("Content-type: application/json");
-      print(json_encode(Exercise::getExercises($userId)));
+      print(json_encode(Muscle::getExercisesByMid($userId, $mid)));
       exit();
-    } 
+
+    }
 
     header("Content-type: application/json");
     print(json_encode(Muscle::getMuscles()));

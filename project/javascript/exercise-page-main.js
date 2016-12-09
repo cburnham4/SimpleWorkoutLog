@@ -38,7 +38,7 @@ $(document).ready(function () {
 
 	$('#routinenav').on('click', load_routines);
 
-	/* Click Exercise And open it */
+	/* Click Exercise And open it with modal*/
 	$('#maindiv').on('click','td.openExercise',
 		   null,
 		   function (e) {
@@ -63,8 +63,7 @@ $(document).ready(function () {
 	   
 	   });
 
-
-
+	/*  Click on Routine and open it with modal */
 	$('#maindiv').on('click','td.openRoutine',
 	   null,
 	   function (e) {
@@ -75,6 +74,7 @@ $(document).ready(function () {
 	       /* Load in the new page */
 	   });
 
+	/* Delete Routine */
 	$('#maindiv').on('click','td.deleteRoutine',
 	   null,
 	   function (e) {
@@ -83,6 +83,19 @@ $(document).ready(function () {
 	       /* Run ajax call to get the exercise stuff */
 
      	    delete_routine(routine.rid, $(this).parent());
+	   });
+
+	/*  Click on Muscle and open it with modal */
+	$('#maindiv').on('click','td.openMuscle',
+	   null,
+	   function (e) {
+	       	var muscle = $(this).parent().data('muscle');
+	       	console.log(muscle.name);
+	      	$('h1').text(muscle.name);
+
+	       	/* Load in the new page */
+		   	$("#maindiv").empty();
+			$("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle));
 	   });
 
 

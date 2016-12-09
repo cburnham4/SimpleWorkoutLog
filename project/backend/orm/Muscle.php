@@ -28,4 +28,25 @@ class Muscle
     return $muslces;
   }
 
+  public static function getExercisesByMid($uid, $mid) {
+    $mysqli = Muscle::connect();
+
+    $result = $mysqli->query("SELECT EID, ExerciseName FROM Exercises Where MID = " .$mid " AND UserID = " .$uid);
+
+    $exercises = array();
+
+    if($result){
+      while($next_row = $result->fetch_array()){
+        $json_obj = array('eid' => $next_row['EID'],
+                  'ename' => $next_row['ExerciseName'], 
+                  );
+        $exercises[] = $json_obj;  
+      }
+    }
+
+    return $exercises;
+
+
+  }
+
 }

@@ -7,6 +7,7 @@ Muscle.prototype.makeDiv = function() {
     var cdiv = $("<tr></tr>");
 
     cdiv.append('<td>'+this.name+'</td>');
+    cdiv.addClass('openMuscle');
 
     cdiv.data('muscle', this);
 
@@ -15,8 +16,9 @@ Muscle.prototype.makeDiv = function() {
 
 
 Muscle.prototype.makeOption = function() {
-    var option = $("<option>"+this.name+"</option>");
 
+    var option = $("<option>"+this.name+"</option>");
+   
     option.data('muscle', this);
 
     return option;

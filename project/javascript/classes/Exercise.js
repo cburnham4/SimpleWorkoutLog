@@ -21,3 +21,11 @@ Exercise.prototype.makeDiv = function() {
     return cdiv;
 };
 
+Exercise.prototype.makeOption = function() {
+    var option = $("<option>"+this.name+"</option>");
+
+    option.data('exercise', this);
+
+    return option;
+};
+

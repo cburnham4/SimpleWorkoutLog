@@ -17,7 +17,8 @@ $(document).ready(function () {
 	})
 
 	/* Get muscles into the muscle array */
-	load_muscles_initial();	
+	load_muscles_initial();
+
 
 	/* Get the stored user id */
 	userId = localStorage.getItem("usernameID");
@@ -72,6 +73,9 @@ $(document).ready(function () {
 	       $('h1').text(routine.name);
 
 	       /* Load in the new page */
+	       $("#maindiv").empty();
+		   $("#maindiv").load("../html/routine-content.html", load_routine_exercise_page(routine));
+
 	   });
 
 	/* Delete Routine */

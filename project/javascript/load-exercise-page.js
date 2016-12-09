@@ -1,6 +1,9 @@
 var load_exercise_page = function(exercise){
 	load_dayId(exercise.eid, function(did){
 
+	disable_add_exercise();
+	disable_add_routine();	
+
 	get_sets_from_day(did);
 
 	$(document).on('click','#current-workout-tab', function(e){

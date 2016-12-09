@@ -73,6 +73,9 @@ $(document).ready(function () {
 	       $('h1').text(routine.name);
 
 	       /* Load in the new page */
+	       $("#maindiv").empty();
+		   $("#maindiv").load("../html/routine-content.html", load_exercise_page(routine));
+
 	   });
 
 	$('#maindiv').on('click','td.deleteRoutine',

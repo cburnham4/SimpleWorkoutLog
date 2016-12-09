@@ -10,7 +10,7 @@ var load_routine_exercise_page = function (routine) {
 	load_exercises_initial(function(){
 		console.log("set on click");
 		$("#addRoutineExerciseForm").on("submit", function(e){
-			addRoutineExercises(e, routine)
+			addRoutineExercises(e, routine);
 		});
 
 	});
@@ -26,10 +26,14 @@ var load_exercise_from_rid = function(routine){
 		dataType: "json",
 		type: 'GET',
 		success: function(res) {
-			console.log(res.length);
+			console.log(res);
 			for (var i=0; i<res.length; i++) {
 				var e = new Exercise(res[i]);
-				$("#routine-exercise-table").append(e.makeDiv());
+				if(e.name){
+					console.log(e.name);
+					$("#routine-exercise-table").append(e.makeRoutineRow());
+				}
+
 			}
 		}
 	});
@@ -72,7 +76,7 @@ var addRoutineExercises = function(e, routine){
 		success: function(data) {
 			console.log(data);
 			var e = new Exercise(data);
-			$("#routine-exercise-table").append(e.makeDiv());
+			$("#routine-exercise-table").append(e.makeRoutineRow());
 
 		},
 		error: function (xhr, ajaxOptions, thrownError) {

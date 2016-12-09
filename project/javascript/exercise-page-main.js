@@ -121,7 +121,6 @@ $(document).ready(function () {
 });
 
 var load_main_table = function(callback){
-	console.log("load main table");
 	$("#maindiv").empty();
 	$("#maindiv").load("../html/table-content.html", callback);
 }

@@ -21,6 +21,20 @@ Exercise.prototype.makeDiv = function() {
     return cdiv;
 };
 
+
+Exercise.prototype.makeRoutineRow = function() {
+    var cdiv = $("<tr></tr>");
+
+    var tddiv = $("<td>"+this.name+"</td>");
+    tddiv.addClass('openExercise');
+
+    cdiv.append(tddiv);
+    
+    cdiv.data('exercise', this);
+
+    return cdiv;
+};
+
 Exercise.prototype.makeOption = function() {
     var option = $("<option>"+this.name+"</option>");
 

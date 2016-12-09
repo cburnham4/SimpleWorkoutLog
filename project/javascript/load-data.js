@@ -6,7 +6,9 @@ var load_exercises = function(){
 		clear_table('Exercise');
 		$('h1').text('Exercises');
 
-		remove_add_exercise_clicks();	
+		remove_add_exercise_clicks();
+		enable_add_exercise();
+		disable_add_routine();	
 
 
 		$('#exercisenav').addClass('active');
@@ -39,6 +41,10 @@ var load_exercises = function(){
 
 var load_muscles = function(){
 	load_main_table(function(){
+		disable_add_exercise();
+		disable_add_routine();	
+
+
 		clear_table('Muscle');
 		$("h1").text("Muscles");
 
@@ -82,28 +88,33 @@ var load_muscles_initial = function(){
 
 var load_routines = function(){
 
-	clear_table('Routine');
-	$('h1').text('Routines');
+	load_main_table(function(){	
+		disable_add_exercise();
+		enable_add_routine();	
 
-	remove_add_exercise_clicks();	
+		clear_table('Routine');
+		$('h1').text('Routines');
 
-	$('#exercisenav').removeClass('active');
-	$('#musclenav').removeClass('active');
-	$('#routinenav').addClass('active');
+		remove_add_exercise_clicks();	
 
-	var params = "?userId=" + userId;
-	var url_get = url_base + routine_api + params;
-	$.ajax({
-	        url: url_get,
-	        type: 'GET',
-	        success: function(res) {
+		$('#exercisenav').removeClass('active');
+		$('#musclenav').removeClass('active');
+		$('#routinenav').addClass('active');
 
-	        	for (var i=0; i<res.length; i++) {
-	   				var r = new Routine(res[i]);
-	   				$("#maintable").append(r.makeDiv());
-       			}
+		var params = "?userId=" + userId;
+		var url_get = url_base + routine_api + params;
+		$.ajax({
+		        url: url_get,
+		        type: 'GET',
+		        success: function(res) {
 
-	        }
+		        	for (var i=0; i<res.length; i++) {
+		   				var r = new Routine(res[i]);
+		   				$("#maintable").append(r.makeDiv());
+	       			}
 
-	    });
+		        }
+
+		    });
+	});
 }

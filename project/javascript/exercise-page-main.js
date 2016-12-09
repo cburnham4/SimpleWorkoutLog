@@ -25,6 +25,9 @@ $(document).ready(function () {
 	/* Add Exercise button clicked */
 	$('#addExerciseForm').on('submit', addExercise);
 
+	/* Add Routine button clicked */
+	$('#addRoutineForm').on('submit', addRoutine);				
+
 
 	/* Get exercises */
 	load_exercises();
@@ -35,7 +38,7 @@ $(document).ready(function () {
 
 	$('#routinenav').on('click', load_routines);
 
-	/* Click Exercise */
+	/* Click Exercise And open it */
 	$('#maindiv').on('click','td.openExercise',
 		   null,
 		   function (e) {
@@ -48,6 +51,7 @@ $(document).ready(function () {
 			   $("#maindiv").load("../html/completedsets-content.html", load_exercise_page(exercise));
 		   });
 
+	/* Delete Exercise */
 	$('#maindiv').on('click','td.deleteExercise',
 	   null,
 	   function (e) {
@@ -79,9 +83,6 @@ $(document).ready(function () {
 	       /* Run ajax call to get the exercise stuff */
 
      	    delete_routine(routine.rid, $(this).parent());
-	       
-	    
-
 	   });
 
 
@@ -120,7 +121,7 @@ var addExercise = 	function(e) {
 }
 
 //add routine
-var addRoutine = 	function(e) {
+var addRoutine = function(e) {
 	e.preventDefault();
 
 	var params = $(this).serialize() + "&userId=" + userId; 

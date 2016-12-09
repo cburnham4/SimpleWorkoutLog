@@ -1,8 +1,8 @@
 	
 
 
-	var load_routine_exercise_page = function (routine) {
-
+	var load_routine_exercise_page = function (routine, e) {
+		e.preventDefault();
 		/* Get routine exercises into the routine exercise dropdown */
 		console.log("ran");
 		load_exercises_initial();
@@ -23,7 +23,7 @@
 	        	console.log(res);
 	        	for (var i=0; i<res.length; i++) {
 	   				var ex = new Exercise(res[i]);
-	   				$("#exercise-select").append(ex.makeOption());
+	   				$("#maindiv #exercise-select").append(ex.makeOption());
 	   			}
 	        }
 		});

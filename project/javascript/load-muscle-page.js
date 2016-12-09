@@ -1,33 +1,35 @@
-var load_muscle_page = function(muscle){
-		
-	get_exercises_by_muscle(muscle);
+var load_muscle_page = function(muscle, e){
+	console.log("loaded muscle page");
+	get_exercises_by_muscle(muscle, function(){
+    for(var i = 0; i <exercises.length; i++){
+      var e = exercises[i];
+          $('#exercise-muscle-table').append(e.makeDiv());
+    }
 
+  });
 
-	}
+	console.log("done");
+
 }
 
-var get_exercises_by_muscle = function(muscle){
-	var params = "?userId=" + did + "?mid=" + mid;
-	//var url_get = url_base + sets_api + params;
-	//where does this sets_api variable come from?
-
-	clear_table();
-
+var exercises = [];
+var get_exercises_by_muscle = function(muscle, callback){
+	var params = "?userId=" + userId + "&mid=" + muscle.mid;
+	var url_get = url_base + muscle_api + params;
+  exercises = [];
 	$.ajax({
         url: url_get,
         type: 'GET',
         success: function(res) {
+        	
         	for (var i=0; i<res.length; i++) {
-   				var ebyMuscle = new ExerciseByMuscle(res[i]);
-   				$('#exercise-muscle-table').append(ebyMuscle.makeDiv());
-   			}
+     				var e= new Exercise(res[i]);
+            exercises.push(e);
+     				console.log(e.name);
+     				
+            
+   			  }
+          callback();
         }
-
     });
-}
-
-var clear_table = function () {
-	$("#maintable").empty();
-	//$("#maintable").append("<tr><th>"+name+"</th><th></th></tr>");
-
 }

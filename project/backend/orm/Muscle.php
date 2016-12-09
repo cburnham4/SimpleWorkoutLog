@@ -31,14 +31,16 @@ class Muscle
   public static function getExercisesByMid($uid, $mid) {
     $mysqli = Muscle::connect();
 
-    $result = $mysqli->query("SELECT EID, ExerciseName FROM Exercises Where MID = " .$mid " AND UserID = " .$uid);
+    $result = $mysqli->query("SELECT EID, ExerciseName FROM Exercises Where MID = 
+      " . $mysqli->real_escape_string($mid) ." AND UserID = " . $mysqli->real_escape_string($uid));
 
     $exercises = array();
 
     if($result){
       while($next_row = $result->fetch_array()){
         $json_obj = array('eid' => $next_row['EID'],
-                  'ename' => $next_row['ExerciseName'], 
+                  'name' => $next_row['ExerciseName'], 
+                  'mid' => $mid
                   );
         $exercises[] = $json_obj;  
       }

@@ -74,6 +74,7 @@ var load_exercise_page = function(exercise){
 		$(document).on('click','#maindiv td.deleteSet',
 		   null,
 		   function (e) {
+		   	e.preventDefault();
 		       var set = $(this).parent().data('set');
 		       /* Run ajax call to get the exercise stuff */
 

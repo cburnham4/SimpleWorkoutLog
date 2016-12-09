@@ -13,6 +13,7 @@ $(document).ready(function () {
 	load_main_table();
 
 	$('#home').on('click', function(e) {
+		e.preventDefault();
 		location.reload();
 	})
 
@@ -43,6 +44,7 @@ $(document).ready(function () {
 	$('#maindiv').on('click','td.openExercise',
 		   null,
 		   function (e) {
+		   	e.preventDefault();
 		       var exercise = $(this).parent().data('exercise');
 		       console.log(exercise.name);
 		       $('h1').text(exercise.name);
@@ -56,6 +58,7 @@ $(document).ready(function () {
 	$('#maindiv').on('click','td.deleteExercise',
 	   null,
 	   function (e) {
+	   	e.preventDefault();
 	       var exercise = $(this).parent().data('exercise');
 	       console.log("Delete" + exercise.name);
 	       /* Run ajax call to get the exercise stuff */
@@ -68,13 +71,14 @@ $(document).ready(function () {
 	$('#maindiv').on('click','td.openRoutine',
 	   null,
 	   function (e) {
+	   	   e.preventDefault();
 	       var routine = $(this).parent().data('routine');
 	       console.log(routine.name);
 	       $('h1').text(routine.name);
 
 	       /* Load in the new page */
 	       $("#maindiv").empty();
-		   $("#maindiv").load("../html/routine-content.html", load_routine_exercise_page(routine));
+		   $("#maindiv").load("../html/routine-content.html", load_routine_exercise_page(routine, e));
 
 	   });
 
@@ -82,6 +86,7 @@ $(document).ready(function () {
 	$('#maindiv').on('click','td.deleteRoutine',
 	   null,
 	   function (e) {
+	   	e.preventDefault();
 	       var routine= $(this).parent().data('routine');
 	       console.log("Delete" + routine.name);
 	       /* Run ajax call to get the exercise stuff */
@@ -90,16 +95,17 @@ $(document).ready(function () {
 	   });
 
 	/*  Click on Muscle and open it with modal */
-	$('#maindiv').on('click','td.openMuscle',
+	$('#maindiv').on('click','tr.openMuscle',
 	   null,
 	   function (e) {
-	       	var muscle = $(this).parent().data('muscle');
+	   		e.preventDefault();
+	       	var muscle = $(this).data('muscle');
 	       	console.log(muscle.name);
 	      	$('h1').text(muscle.name);
 
 	       	/* Load in the new page */
 		   	$("#maindiv").empty();
-			$("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle));
+			$("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle, e));
 	   });
 
 

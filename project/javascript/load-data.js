@@ -1,7 +1,11 @@
 /* load data
 	Load the data via get requests 
 	*/
-var load_exercises = function(){
+var load_exercises = function(e){
+	if(e != null){
+		e.preventDefault();
+	}
+
 	load_main_table(function(){
 		clear_table('Exercise');
 		$('h1').text('Exercises');
@@ -39,7 +43,8 @@ var load_exercises = function(){
 
 }
 
-var load_muscles = function(){
+var load_muscles = function(e){
+	e.preventDefault();
 	load_main_table(function(){
 		disable_add_exercise();
 		disable_add_routine();	
@@ -87,8 +92,8 @@ var load_muscles_initial = function(){
 
 
 
-var load_routines = function(){
-
+var load_routines = function(e){
+	e.preventDefault();
 	load_main_table(function(){	
 		disable_add_exercise();
 		enable_add_routine();	

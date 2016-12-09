@@ -42,6 +42,8 @@ class Routine
      VALUES (" . "'" . $mysqli->real_escape_string($name) . "', " .
            "'" . $mysqli->real_escape_string($userId) . "' )" );
 
+    $rid = $mysqli->insert_id;
+
     if ($result) {
       $rid = $mysqli->insert_id;
       return new Routine($rid, $name, $userId);

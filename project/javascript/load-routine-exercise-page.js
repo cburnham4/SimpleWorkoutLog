@@ -22,16 +22,16 @@ var load_exercise_from_rid = function(routine){
 	var url_get = url_base + routine_exercise_api + params;
 
 	$.ajax({
-        url: url_get,
-        dataType: "json",
-        type: 'GET',
-        success: function(res) {
-        	console.log(res.length);
-        	for (var i=0; i<res.length; i++) {
-   				var e = new Exercise(res[i]);
-   				$("#routine-exercise-table").append(e.makeDiv());
-   			}
-        }
+		url: url_get,
+		dataType: "json",
+		type: 'GET',
+		success: function(res) {
+			console.log(res.length);
+			for (var i=0; i<res.length; i++) {
+				var e = new Exercise(res[i]);
+				$("#routine-exercise-table").append(e.makeDiv());
+			}
+		}
 	});
 }
 
@@ -42,16 +42,16 @@ var load_exercises_initial = function(callback){
 	var url_get = url_base + exercise_api + params;
 
 	$.ajax({
-        url: url_get,
-        type: 'GET',
-        success: function(res) {
-        	console.log(res);
-        	for (var i=0; i<res.length; i++) {
-   				var ex = new Exercise(res[i]);
-   				$("#maindiv #exercise-select").append(ex.makeOption());
-   			}
-   			callback();
-        }
+		url: url_get,
+		type: 'GET',
+		success: function(res) {
+			console.log(res);
+			for (var i=0; i<res.length; i++) {
+				var ex = new Exercise(res[i]);
+				$("#maindiv #exercise-select").append(ex.makeOption());
+			}
+			callback();
+		}
 	});
 
 }
@@ -65,20 +65,20 @@ var addRoutineExercises = function(e, routine){
 	var params = $(this).serialize() + "&eid=" + exercise.eid + "&rid=" +routine.rid; 
 	console.log(params);
 	
-    $.ajax(url_base + routine_exercise_api,
-	  {type: "POST",
-		  dataType: "json",
-		  data: params,
-		  	success: function(data) {
-			  	console.log(data);
-			  	var e = new Exercise(data);
-		   		$("#routine-exercise-table").append(e.makeDiv());
+	$.ajax(url_base + routine_exercise_api,
+		{type: "POST",
+		dataType: "json",
+		data: params,
+		success: function(data) {
+			console.log(data);
+			var e = new Exercise(data);
+			$("#routine-exercise-table").append(e.makeDiv());
 
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-		        alert(xhr.status);
-		        alert(thrownError);
-		      }
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
+		}
 
-		});
+	});
 }

@@ -1,6 +1,6 @@
 /* load data
-	Load the data via get requests 
-	*/
+Load the data via get requests 
+*/
 var load_exercises = function(e){
 	if(e != null){
 		e.preventDefault();
@@ -24,19 +24,19 @@ var load_exercises = function(e){
 		var url_get = url_base + exercise_api + params;
 
 		$.ajax({
-		        url: url_get,
-		        type: 'GET',
-		        success: function(res) {
+			url: url_get,
+			type: 'GET',
+			success: function(res) {
 
-		        	for (var i=0; i<res.length; i++) {
-		   				var t = new Exercise(res[i]);
-		   				$("#maintable").append(t.makeDiv());
-	       			}
+				for (var i=0; i<res.length; i++) {
+					var t = new Exercise(res[i]);
+					$("#maintable").append(t.makeDiv());
+				}
 
-		        }
+			}
 
-		    });
 		});
+	});
 }
 
 var load_muscles = function(e){
@@ -72,16 +72,16 @@ var load_muscles_initial = function(){
 	$("#muscle-select").append(m.makeOption());
 
 	$.ajax({
-        url: url_get,
-        type: 'GET',
-        success: function(res) {
-        	for (var i=0; i<res.length; i++) {
-   				var m = new Muscle(res[i]);
-   				muscles.push(m);
-   				$("#muscle-select").append(m.makeOption());
-   			}
-        }
-    });
+		url: url_get,
+		type: 'GET',
+		success: function(res) {
+			for (var i=0; i<res.length; i++) {
+				var m = new Muscle(res[i]);
+				muscles.push(m);
+				$("#muscle-select").append(m.makeOption());
+			}
+		}
+	});
 
 
 }
@@ -106,17 +106,17 @@ var load_routines = function(e){
 		var params = "?userId=" + userId;
 		var url_get = url_base + routine_api + params;
 		$.ajax({
-		        url: url_get,
-		        type: 'GET',
-		        success: function(res) {
+			url: url_get,
+			type: 'GET',
+			success: function(res) {
 
-		        	for (var i=0; i<res.length; i++) {
-		   				var r = new Routine(res[i]);
-		   				$("#maintable").append(r.makeDiv());
-	       			}
+				for (var i=0; i<res.length; i++) {
+					var r = new Routine(res[i]);
+					$("#maintable").append(r.makeDiv());
+				}
 
-		        }
+			}
 
-		    });
+		});
 	});
 }

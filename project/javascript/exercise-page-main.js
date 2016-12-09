@@ -35,87 +35,89 @@ $(document).ready(function () {
 	load_exercises();
 
 	$('#exercisenav').on('click', load_exercises);
-		
+	
 	$('#musclenav').on('click', load_muscles);
 
 	$('#routinenav').on('click', load_routines);
 
 	/* Click Exercise And open it with modal*/
 	$('#maindiv').on('click','td.openExercise',
-		   null,
-		   function (e) {
-		   	e.preventDefault();
-		       var exercise = $(this).parent().data('exercise');
-		       console.log(exercise.name);
-		       $('h1').text(exercise.name);
+		null,
+		function (e) {
+			e.preventDefault();
+			var exercise = $(this).parent().data('exercise');
+			console.log(exercise.name);
+			$('h1').text(exercise.name);
 
-		       /* Load in the new page */
-		       $("#maindiv").empty();
-			   $("#maindiv").load("../html/completedsets-content.html", load_exercise_page(exercise));
-		   });
+			/* Load in the new page */
+			$("#maindiv").empty();
+			$("#maindiv").load("../html/completedsets-content.html", function(){
+				load_exercise_page(exercise);
+			});
+		});
 
 	/* Delete Exercise */
 	$('#maindiv').on('click','td.deleteExercise',
-	   null,
-	   function (e) {
-	   	e.preventDefault();
-	       var exercise = $(this).parent().data('exercise');
-	       console.log("Delete" + exercise.name);
-	       /* Run ajax call to get the exercise stuff */
+		null,
+		function (e) {
+			e.preventDefault();
+			var exercise = $(this).parent().data('exercise');
+			console.log("Delete" + exercise.name);
+			/* Run ajax call to get the exercise stuff */
 
-     	    delete_exercise(exercise.eid, $(this).parent());
-	   
-	   });
+			delete_exercise(exercise.eid, $(this).parent());
+			
+		});
 
 	/*  Click on Routine and open it with modal */
 	$('#maindiv').on('click','td.openRoutine',
-	   null,
-	   function (e) {
-	   	   e.preventDefault();
-	       var routine = $(this).parent().data('routine');
-	       console.log(routine.name);
-	       $('h1').text(routine.name);
+		null,
+		function (e) {
+			e.preventDefault();
+			var routine = $(this).parent().data('routine');
+			console.log(routine.name);
+			$('h1').text(routine.name);
 
-	       /* Load in the new page */
-	       $("#maindiv").empty();
-		   $("#maindiv").load("../html/routine-content.html", function(e){
-		   		load_routine_exercise_page(routine, e);
+			/* Load in the new page */
+			$("#maindiv").empty();
+			$("#maindiv").load("../html/routine-content.html", function(e){
+				load_routine_exercise_page(routine, e);
 			});
 
-	   });
+		});
 
 	/* Delete Routine */
 	$('#maindiv').on('click','td.deleteRoutine',
-	   null,
-	   function (e) {
-	   	console.log("delete routine");
-	   	e.preventDefault();
-	       var routine= $(this).parent().data('routine');
-	       console.log("Delete" + routine.name);
-	       /* Run ajax call to get the exercise stuff */
+		null,
+		function (e) {
+			console.log("delete routine");
+			e.preventDefault();
+			var routine= $(this).parent().data('routine');
+			console.log("Delete" + routine.name);
+			/* Run ajax call to get the exercise stuff */
 
-     	    delete_routine(routine.rid, $(this).parent());
-	   });
+			delete_routine(routine.rid, $(this).parent());
+		});
 
 	/*  Click on Muscle and open it with modal */
 	$('#maindiv').on('click','tr.openMuscle',
-	   null,
-	   function (e) {
-	   		e.preventDefault();
-	   		e.stopPropagation();
-	       	var muscle = $(this).data('muscle');
-	       	console.log(muscle.name);
-	      	$('h1').text(muscle.name);
+		null,
+		function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+			var muscle = $(this).data('muscle');
+			console.log(muscle.name);
+			$('h1').text(muscle.name);
 
-	       	/* Load in the new page */
-		   	$("#maindiv").empty(); 
-		    $("#maindiv").load("../html/exercise-muscle-content.html", function(){
-		    	load_muscle_page(muscle);
-		    });
+			/* Load in the new page */
+			$("#maindiv").empty(); 
+			$("#maindiv").load("../html/exercise-muscle-content.html", function(){
+				load_muscle_page(muscle);
+			});
 			// clear_table('Exercise');
 			// get_exercises_by_muscle(muscle);
-	   }
-	);
+		}
+		);
 });
 
 var load_main_table = function(callback){
@@ -132,22 +134,22 @@ var addExercise = 	function(e) {
 	var params = $(this).serialize() + "&userId=" + userId + "&muscleId=" +muscle.mid; 
 	console.log(params);
 	
-    $.ajax(url_base + exercise_api,
-	  {type: "POST",
-		  dataType: "json",
-		  data: params,
-		  	success: function(data) {
-			  	console.log(data);
-			  	var t = new Exercise(data);
-		   		$("#maintable").append(t.makeDiv());
+	$.ajax(url_base + exercise_api,
+		{type: "POST",
+		dataType: "json",
+		data: params,
+		success: function(data) {
+			console.log(data);
+			var t = new Exercise(data);
+			$("#maintable").append(t.makeDiv());
 
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-		        alert(xhr.status);
-		        alert(thrownError);
-		      }
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
+		}
 
-		});
+	});
 }
 
 //add routine
@@ -157,22 +159,22 @@ var addRoutine = function(e) {
 	var params = $(this).serialize() + "&userId=" + userId; 
 	console.log(params);
 	
-    $.ajax(url_base + routine_api,
-	  {type: "POST",
-		  dataType: "json",
-		  data: params,
-		  	success: function(data) {
-			  	console.log(data);
-			  	var r = new Routine(data);
-		   		$("#maintable").append(r.makeDiv());
+	$.ajax(url_base + routine_api,
+		{type: "POST",
+		dataType: "json",
+		data: params,
+		success: function(data) {
+			console.log(data);
+			var r = new Routine(data);
+			$("#maintable").append(r.makeDiv());
 
-			},
-			error: function (xhr, ajaxOptions, thrownError) {
-		        alert(xhr.status);
-		        alert(thrownError);
-		      }
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(xhr.status);
+			alert(thrownError);
+		}
 
-		});
+	});
 }
 
 
@@ -186,15 +188,15 @@ var load_dayId= function(eid, callback){
 	console.log(url_get);
 
 	$.ajax({
-	        url: url_get,
-	        type: 'GET',
-	        success: function(res) {
-	        	console.log(res);
-	        	did = res.did;
-	        	callback(did);
-	        }
+		url: url_get,
+		type: 'GET',
+		success: function(res) {
+			console.log(res);
+			did = res.did;
+			callback(did);
+		}
 
-	    });
+	});
 }
 
 
@@ -202,18 +204,18 @@ var load_dayId= function(eid, callback){
 var delete_exercise = function(eid, row){
 	console.log("Delete exercise");
 	var params = "eid="+eid;
-    $.ajax(url_base + exercise_api,
-    {type: "POST",
-	  dataType: "json",
-	  data: params,
-	  	success: function(data) {
-	  		alert("success");
-		  	console.log(data);
-		  	
+	$.ajax(url_base + exercise_api,
+		{type: "POST",
+		dataType: "json",
+		data: params,
+		success: function(data) {
+			alert("success");
+			console.log(data);
+			
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-	        console.log(xhr);
-	      }
+			console.log(xhr);
+		}
 
 	});
 	row.remove();
@@ -222,18 +224,18 @@ var delete_exercise = function(eid, row){
 var delete_routine = function(rid, row){
 	console.log("Delete routine");
 	var params = "rid="+rid;
-    $.ajax(url_base + routine_api,
-    {type: "POST",
-	  dataType: "json",
-	  data: params,
-	  	success: function(data) {
-		  	console.log(data);
-		  	
+	$.ajax(url_base + routine_api,
+		{type: "POST",
+		dataType: "json",
+		data: params,
+		success: function(data) {
+			console.log(data);
+			
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-	        console.log(xhr.status);
-	        console.log(thrownError);
-	      }
+			console.log(xhr.status);
+			console.log(thrownError);
+		}
 
 	});
 	row.remove();

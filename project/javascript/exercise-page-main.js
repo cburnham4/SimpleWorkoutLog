@@ -35,7 +35,7 @@ $(document).ready(function () {
 	load_exercises();
 
 	$('#exercisenav').on('click', load_exercises);
-	
+
 	$('#musclenav').on('click', load_muscles);
 
 	$('#routinenav').on('click', load_routines);
@@ -66,7 +66,7 @@ $(document).ready(function () {
 			/* Run ajax call to get the exercise stuff */
 
 			delete_exercise(exercise.eid, $(this).parent());
-			
+
 		});
 
 	/*  Click on Routine and open it with modal */
@@ -77,6 +77,8 @@ $(document).ready(function () {
 			var routine = $(this).parent().data('routine');
 			console.log(routine.name);
 			$('h1').text(routine.name);
+
+			disable_add_routine();
 
 			/* Load in the new page */
 			$("#maindiv").empty();
@@ -114,10 +116,8 @@ $(document).ready(function () {
 			$("#maindiv").load("../html/exercise-muscle-content.html", function(){
 				load_muscle_page(muscle);
 			});
-			// clear_table('Exercise');
-			// get_exercises_by_muscle(muscle);
 		}
-		);
+	);
 });
 
 var load_main_table = function(callback){
@@ -211,7 +211,7 @@ var delete_exercise = function(eid, row){
 		success: function(data) {
 			alert("success");
 			console.log(data);
-			
+
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr);
@@ -230,7 +230,7 @@ var delete_routine = function(rid, row){
 		data: params,
 		success: function(data) {
 			console.log(data);
-			
+
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status);

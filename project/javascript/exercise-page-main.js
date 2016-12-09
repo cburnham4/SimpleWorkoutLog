@@ -193,7 +193,7 @@ var delete_exercise = function(eid, row){
 }
 
 var delete_routine = function(rid, row){
-	console.log("Delete exercise");
+	console.log("Delete routine");
 	var params = "rid="+rid;
     $.ajax(url_base + routine_api,
     {type: "POST",

@@ -78,7 +78,9 @@ $(document).ready(function () {
 
 	       /* Load in the new page */
 	       $("#maindiv").empty();
-		   $("#maindiv").load("../html/routine-content.html", load_routine_exercise_page(routine, e));
+		   $("#maindiv").load("../html/routine-content.html", function(e){
+		   		load_routine_exercise_page(routine, e);
+			});
 
 	   });
 
@@ -106,13 +108,12 @@ $(document).ready(function () {
 	      	$('h1').text(muscle.name);
 
 	       	/* Load in the new page */
-		   	//$("#maindiv").empty(); 
-		    // $("#maindiv").load("../html/exercise-muscle-content.html", load_muscle_page(muscle, function(){
-		    // 	  $('#maindiv').append("<h1>hello</h1>");
-		    // 	  console.log("done");
-		    // }));
-			clear_table('Exercise');
-			get_exercises_by_muscle(muscle);
+		   	$("#maindiv").empty(); 
+		    $("#maindiv").load("../html/exercise-muscle-content.html", function(){
+		    	load_muscle_page(muscle);
+		    });
+			// clear_table('Exercise');
+			// get_exercises_by_muscle(muscle);
 	   }
 	);
 });

@@ -4,6 +4,7 @@
   error_reporting(E_ALL);
 
   require_once("orm/Routine.php");
+  require_once("orm/Exercise.php");
 
 
   if ($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -27,8 +28,8 @@
         $rid = trim($_REQUEST['rid']);
         $eid = trim($_REQUEST['eid']);
 
-        $success = Routine::addExerciseToRoutine($rid, $eid);
-        print($success);
+        $exercise = Routine::addExerciseToRoutine($rid, $eid);
+        print(json_encode($exercise));
         exit();
      }else {
       header("HTTP/1.0 400 Bad Request");

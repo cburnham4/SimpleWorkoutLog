@@ -1,16 +1,14 @@
-var load_muscle_page = function(muscle, callback){
-  $('#maindiv').append("<h1>hello</h1>");
+var load_muscle_page = function(muscle){
     console.log("loaded muscle page");
-    get_exercises_by_muscle(muscle, function(){
-      for(var i = 0; i <exercises.length; i++){
-        var e = exercises[i];
-            $('#maindiv').append(e.makeDiv());
-      }
+     get_exercises_by_muscle(muscle);//, function(){
+    //   for(var i = 0; i <exercises.length; i++){
+    //     var e = exercises[i];
+    //         $('#maindiv').append(e.makeDiv());
+    //   }
 
-      var count = $('#maindiv').children().length;
+    //   var count = $('#maindiv').children().length;
 
-callback();
-  });
+  //});
 
 
 
@@ -30,9 +28,10 @@ var get_exercises_by_muscle = function(muscle){
         success: function(res) {
         	
         	for (var i=0; i<res.length; i++) {
-     				var e= new Exercise(res[i]);
+     				     var e= new Exercise(res[i]);
             		exercises.push(e);        
-            		$("#maintable").append(e.makeDiv());    
+                console.log(e.name);
+            		$("#exercise-muscle-table").append(e.makeDiv());    
    			  }
           
         }

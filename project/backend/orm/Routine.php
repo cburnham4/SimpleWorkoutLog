@@ -74,10 +74,7 @@ class Routine
 
     $result =  $mysqli->query($sql);
 
-   if($result){
-      return "Success";
-   }
-   return "Not Successful";
+    return Exercise::getExercisesByEid($eid);
   }
 
   public static function getExercisesByRoutine($rid){

@@ -86,6 +86,7 @@ var load_muscles_initial = function(){
 }
 
 
+
 var load_routines = function(){
 
 	load_main_table(function(){	
